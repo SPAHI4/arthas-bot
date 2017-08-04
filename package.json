@@ -1,0 +1,8 @@
+{
+  "name": "arthas-bot",
+  "version": "0.0.1",
+  "main": "index.js",
+  "repository": "git@github.com:SPAHI4/arthas-bot.git",
+  "author": "Anton S <spaxi4@yandex.ru>",
+  "license": "MIT"
+}
