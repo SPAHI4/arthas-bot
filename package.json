@@ -4,5 +4,22 @@
   "main": "index.js",
   "repository": "git@github.com:SPAHI4/arthas-bot.git",
   "author": "Anton S <spaxi4@yandex.ru>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon --exec babel-node ./src --harmony"
+  },
+  "devDependencies": {
+    "babel-cli": "^7.0.0-alpha.18",
+    "babel-core": "^7.0.0-alpha.18",
+    "babel-plugin-transform-class-properties": "^7.0.0-alpha.18",
+    "babel-plugin-transform-decorators": "^7.0.0-alpha.18",
+    "babel-plugin-transform-es2015-modules-commonjs": "^7.0.0-alpha.18",
+    "babel-register": "^7.0.0-alpha.18",
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "axios": "^0.16.2",
+    "telegraf": "^3.9.0",
+    "typeorm": "^0.1.0-alpha.33"
+  }
 }
