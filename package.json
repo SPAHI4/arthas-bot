@@ -13,7 +13,7 @@
     "dev": "nodemon --exec babel-node src --harmony",
     "start": "node build --harmony",
     "build": "babel src --out-dir build --copy-files",
-    "heroku-postbuild": "rm -rf build"
+    "heroku-postbuild": "rm -rf build && yarn run build"
   },
   "devDependencies": {
     "babel-cli": "^7.0.0-alpha.18",
