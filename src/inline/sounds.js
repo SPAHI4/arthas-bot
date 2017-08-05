@@ -57,4 +57,8 @@ export default {
     "Подрубил проверяйте": "https://dl.dropbox.com/s/qoaswbit6cohpyd/papich-podrubil-proveryayte.mp3",
     "Вынес мусор": "https://dl.dropbox.com/s/2lpofqmzdlmy0da/papich-vynes-musor.mp3",
     "Что ты несешь": "https://dl.dropbox.com/s/bs240qaj47xega8/papich-chto-ty-nesesh.mp3",
+    "Да эта жоска!": "https://dl.dropbox.com/s/fwt44i1fz5lysoi/zhestko_1.mp3",
+    "Да эта жоска": "https://dl.dropbox.com/s/uhf5xc5jbr7loal/zhestko_2.mp3",
+    "Да эта жоска а шо делат": "https://dl.dropbox.com/s/6sndrmca6k1kbhy/zhestko_3_che_delat.mp3",
+    "Да эта жоска ахах": "https://dl.dropbox.com/s/90w95fvrdg37fow/zhestko_4_haha.mp3",
 };
