@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
+    "lodash": "^4.17.4",
     "telegraf": "^3.9.0",
     "typeorm": "^0.1.0-alpha.33"
   }
