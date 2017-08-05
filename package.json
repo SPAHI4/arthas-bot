@@ -6,10 +6,10 @@
   "author": "Anton S <spaxi4@yandex.ru>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon --exec babel-node ./src --harmony",
-    "start": "node ./build --harmony",
+    "dev": "nodemon --exec babel-node src --harmony",
+    "start": "node build --harmony",
     "build": "babel src --out-dir build --copy-files",
-    "heroku-postbuild": "rm -rf ./build"
+    "heroku-postbuild": "rm -rf build"
   },
   "devDependencies": {
     "babel-cli": "^7.0.0-alpha.18",
