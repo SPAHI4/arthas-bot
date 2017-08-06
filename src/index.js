@@ -9,7 +9,7 @@ const app = new Telegraf(process.env.BOT_TOKEN);
 
 console.log('Я вернулся из небытия... ДА ДА Я');
 
-app.use(selfGreeting, userGreeting);
+app.use(selfGreeting, /*userGreeting*/);
 
 app.on('inline_query', commandInline);
 
