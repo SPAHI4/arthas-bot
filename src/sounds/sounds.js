@@ -65,7 +65,7 @@ export default {
     "А я все думал, когда же ты появишься": "https://dl.dropbox.com/s/crhu93oj9z91t4v/a_ya_vse_dumal.mp3",
     "Ахаха наканецта": "https://dl.dropbox.com/s/klx1r9mxtf6og39/ahaha_hakanecta.mp3",
     "Кто-нибудь слышал о балансе?": "https://dl.dropbox.com/s/us54jx6aa93cc5e/balans.mp3",
-    "Что с ебалом, пацанчики?": "https://dl.dropbox.com/s/us54jx6aa93cc5e/balans.mp3",
+    "Что с ебалом, пацанчики?": "https://dl.dropbox.com/s/8zhd1d1gpmn3o60/chto_s_ebalom_pacanchiki.mp3",
     "Долбоеб дебил": "https://dl.dropbox.com/s/w8xao5qz8z6ntjt/dolboeb_debil.mp3",
     "Это комменд": "https://dl.dropbox.com/s/ubz0a0v33joj1gj/eto_commend.mp3",
     "Не совсем смешно (немножко смешно)": "https://dl.dropbox.com/s/uk49e9ojn2zoxu8/ne_sovsem_smeshno.mp3",
