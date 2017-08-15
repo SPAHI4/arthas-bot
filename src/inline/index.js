@@ -17,6 +17,8 @@ export default async (ctx) => {
         ,
         {
             next_offset: (Number(ctx.update.inline_query.offset) + CHUNK_COUNT).toString(),
+            switch_pm_text: "Список всех фраз",
+            switch_pm_parameter: "sounds-list"
         },
     );
 }
