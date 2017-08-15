@@ -14,7 +14,7 @@ app.use(selfGreeting, userGreeting);
 
 app.on('inline_query', commandInline);
 
-app.command('sounds-list', soundsList);
+app.command('sounds_list', soundsList);
 
 app.telegram.getMe().then((botInfo) => {
     app.options.username = botInfo.username;
