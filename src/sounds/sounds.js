@@ -1,6 +1,6 @@
 export default {
     "Бэк": "https://dl.dropbox.com/s/rcq3qus5ujys28v/back.mp3",
-    "Бегу сука за тобой": "https://dl.dropbox.com/s/rcq3qus5ujys28v/back.mp3",
+    "Бегу сука за тобой": "https://dl.dropbox.com/s/oe5cppfdf87yny2/begu.mp3",
     "Да да да": "https://dl.dropbox.com/s/wk2k0lmc0dmrebb/dada.mp3",
     "Даун": "https://dl.dropbox.com/s/pi0nw4s9d7i5a75/daun.wav.mp3",
     "Дякую": "https://dl.dropbox.com/s/t9e2nh93e0c7ryy/diakuju.mp3",
