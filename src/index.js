@@ -1,6 +1,7 @@
 import Telegraf from 'telegraf';
 
-import commandInline from './inline'
+import commandInline from './sounds/inline'
+import soundsList from './sounds/soundsList'
 import selfGreeting from "./greeting/selfGreeting";
 import userGreeting from "./greeting/userGreeting";
 
@@ -12,6 +13,8 @@ console.log('Я вернулся из небытия... ДА ДА Я');
 app.use(selfGreeting, userGreeting);
 
 app.on('inline_query', commandInline);
+
+app.command('sounds-list', soundsList);
 
 app.telegram.getMe().then((botInfo) => {
     app.options.username = botInfo.username;
