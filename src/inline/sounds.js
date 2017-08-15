@@ -46,7 +46,7 @@ export default {
     "Всоляного": "https://dl.dropbox.com/s/phhw3os5zqaqywe/vsolyanogo.mp3",
     "Запилил уебка": "https://dl.dropbox.com/s/k5o9w1wzcloq5qy/zapilil.mp3",
     "Здарова, тварына": "https://dl.dropbox.com/s/og7w8150zk3rjny/zdarova_tvarina.mp3",
-    "Андрюха": "https://dl.dropbox.com/s/35y227etx07qz8l/papich-andryuha.mp3",
+    "Андрей": "https://dl.dropbox.com/s/35y227etx07qz8l/papich-andryuha.mp3",
     "Что с ебалом": "https://dl.dropbox.com/s/csa1ihq1rphqoki/papich-chto-s-ebalom.mp3",
     "Фурион": "https://dl.dropbox.com/s/m5qlogcszgrbr38/papich-furion.mp3",
     "КАЙФ": "https://dl.dropbox.com/s/cm989amthxqmd5g/papich-kayf.mp3",
@@ -61,4 +61,19 @@ export default {
     "Да эта жоска": "https://dl.dropbox.com/s/uhf5xc5jbr7loal/zhestko_2.mp3",
     "Да эта жоска а шо делат": "https://dl.dropbox.com/s/6sndrmca6k1kbhy/zhestko_3_che_delat.mp3",
     "Да эта жоска ахах": "https://dl.dropbox.com/s/90w95fvrdg37fow/zhestko_4_haha.mp3",
+    
+    "А я все думал, когда же ты появишься": "https://dl.dropbox.com/s/crhu93oj9z91t4v/a_ya_vse_dumal.mp3"
+    "Ахаха наканецта": "https://dl.dropbox.com/s/klx1r9mxtf6og39/ahaha_hakanecta.mp3",
+    "Кто-нибудь слышал о балансе?": "https://dl.dropbox.com/s/us54jx6aa93cc5e/balans.mp3",
+    "Что с ебалом, пацанчики?": "https://dl.dropbox.com/s/us54jx6aa93cc5e/balans.mp3",
+    "Долбоеб дебил": "https://dl.dropbox.com/s/w8xao5qz8z6ntjt/dolboeb_debil.mp3",
+    "Это комменд": "https://dl.dropbox.com/s/ubz0a0v33joj1gj/eto_commend.mp3",
+    "Не совсем смешно (немножко смешно)": "https://dl.dropbox.com/s/uk49e9ojn2zoxu8/ne_sovsem_smeshno.mp3",
+    "Оп мизантроп": "https://dl.dropbox.com/s/iztulx7kbhiuv1e/op_mizantrop.mp3",
+    "Сынище дерьмища": "https://dl.dropbox.com/s/hnvfk43g6wwa6gx/sinishe_dermisha.mp3",
+    "Совпадение (не думаю)": "https://dl.dropbox.com/s/n8uu2gayscqjlx3/sovpadenie_nedumayu.mp3",
+    "Так це жорстко": "https://dl.dropbox.com/s/s8xbe0b3ic6mg1a/tak_ce_zhorstko.mp3",
+    "Топ рофл": "https://dl.dropbox.com/s/wh1qve7srhuz6uo/top_rofl.mp3",
+    "Завали ебало, животное": "https://dl.dropbox.com/s/n3p3qakemkiwiam/zavali_ebalo_zhiv.mp3",
+    "Земля тебе пухом, братишка": "https://dl.dropbox.com/s/kwp0xpzvhu1bndb/zemlya_tebe_puhom.mp3",
 };
