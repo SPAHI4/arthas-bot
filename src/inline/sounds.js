@@ -62,7 +62,7 @@ export default {
     "Да эта жоска а шо делат": "https://dl.dropbox.com/s/6sndrmca6k1kbhy/zhestko_3_che_delat.mp3",
     "Да эта жоска ахах": "https://dl.dropbox.com/s/90w95fvrdg37fow/zhestko_4_haha.mp3",
     
-    "А я все думал, когда же ты появишься": "https://dl.dropbox.com/s/crhu93oj9z91t4v/a_ya_vse_dumal.mp3"
+    "А я все думал, когда же ты появишься": "https://dl.dropbox.com/s/crhu93oj9z91t4v/a_ya_vse_dumal.mp3",
     "Ахаха наканецта": "https://dl.dropbox.com/s/klx1r9mxtf6og39/ahaha_hakanecta.mp3",
     "Кто-нибудь слышал о балансе?": "https://dl.dropbox.com/s/us54jx6aa93cc5e/balans.mp3",
     "Что с ебалом, пацанчики?": "https://dl.dropbox.com/s/us54jx6aa93cc5e/balans.mp3",
