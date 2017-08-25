@@ -76,4 +76,5 @@ export default {
     "Топ рофл": "https://dl.dropbox.com/s/wh1qve7srhuz6uo/top_rofl.mp3",
     "Завали ебало, животное": "https://dl.dropbox.com/s/n3p3qakemkiwiam/zavali_ebalo_zhiv.mp3",
     "Земля тебе пухом, братишка": "https://dl.dropbox.com/s/kwp0xpzvhu1bndb/zemlya_tebe_puhom.mp3",
+    "Ты понимаешь, что ты поехавший?": "https://dl.dropbox.com/s/yhdu1inggpl8bld/poehavshiy.mp3"
 };
