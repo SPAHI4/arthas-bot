@@ -76,5 +76,13 @@ export default {
     "Топ рофл": "https://dl.dropbox.com/s/wh1qve7srhuz6uo/top_rofl.mp3",
     "Завали ебало, животное": "https://dl.dropbox.com/s/n3p3qakemkiwiam/zavali_ebalo_zhiv.mp3",
     "Земля тебе пухом, братишка": "https://dl.dropbox.com/s/kwp0xpzvhu1bndb/zemlya_tebe_puhom.mp3",
-    "Ты понимаешь, что ты поехавший?": "https://dl.dropbox.com/s/yhdu1inggpl8bld/poehavshiy.mp3"
+    "Ты понимаешь, что ты поехавший?": "https://dl.dropbox.com/s/yhdu1inggpl8bld/poehavshiy.mp3",
+    
+    "Всем привет, работяги": "https://dl.dropbox.com/s/v6cs4d9z3mam6rs/vsem_privet.mp3",
+    "Быть Папизи - всегда изи": "https://dl.dropbox.com/s/4amjuqyb1ozoa3b/bit_papizi.mp3",
+    "Ну, дебил": "https://dl.dropbox.com/s/a4vadnm7pjx2uqz/nu_debil.mp3",
+    "Найс": "https://dl.dropbox.com/s/isam5cc8s2h1qtn/nice.mp3",
+    "Лежать + сосать": "https://dl.dropbox.com/s/opzqbyulqkmq6b9/lezhat_sosat.mp3",
+    "Это гэгэ": "https://dl.dropbox.com/s/es5utdsvd9f9w7k/eto_gg.mp3",
+    "рофланВглориус": "https://dl.dropbox.com/s/foe3t6fro200r0b/roflanVgloruis.mp3",
 };
