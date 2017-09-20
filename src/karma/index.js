@@ -45,7 +45,7 @@ export const karmaPlus = async (ctx) => {
 	userTo.username = getUsername(message.reply_to_message.from, false);
 
 	userFrom.lastVote = new Date();
-	userFrom.username = getUsername(message.reply_to_message.from, false);
+	userFrom.username = getUsername(message.from, false);
 
 	await userRepository.persist([ userTo, userFrom ]);
 
@@ -93,7 +93,7 @@ export const karmaMinus = async ctx => {
 	userTo.username = getUsername(message.reply_to_message.from, false);
 
 	userFrom.lastVote = new Date();
-	userFrom.username = getUsername(message.reply_to_message.from, false);
+	userFrom.username = getUsername(message.from, false);
 
 	await userRepository.persist([ userTo, userFrom ]);
 
