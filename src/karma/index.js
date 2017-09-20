@@ -26,6 +26,7 @@ export const karmaPlus = async (ctx) => {
 	) || userRepository.create({
 		id: message.from.id,
 		chatId: message.chat.id,
+		karma: 0,
 	});
 
 	if (userTo.id === userFrom.id) {
@@ -37,7 +38,7 @@ export const karmaPlus = async (ctx) => {
 	}
 
 	if (userFrom.karma < 10) {
-		return replyWithMarkdown(`карма меньше 10... замля тебе пухом, братишка`);
+		return replyWithMarkdown(`карма меньше 10... земля тебе пухом, братишка`);
 	}
 
 	const oldKarma = userTo.karma;
@@ -85,7 +86,7 @@ export const karmaMinus = async ctx => {
 	}
 
 	if (userFrom.karma < 10) {
-		return replyWithMarkdown(`карма меньше 10... замля тебе пухом, братишка`);
+		return replyWithMarkdown(`карма меньше 10... земля тебе пухом, братишка`);
 	}
 
 	const oldKarma = userTo.karma;
