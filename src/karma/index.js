@@ -42,7 +42,7 @@ export const karmaPlus = async (ctx) => {
 
 	const oldKarma = userTo.karma;
 	userTo.karma += 1;
-	userFrom.username = getUsername(message.reply_to_message.from, false);
+	userTo.username = getUsername(message.reply_to_message.from, false);
 
 	userFrom.lastVote = new Date();
 	userFrom.username = getUsername(message.reply_to_message.from, false);
@@ -90,7 +90,7 @@ export const karmaMinus = async ctx => {
 
 	const oldKarma = userTo.karma;
 	userTo.karma -= 1;
-	userFrom.username = getUsername(message.reply_to_message.from, false);
+	userTo.username = getUsername(message.reply_to_message.from, false);
 
 	userFrom.lastVote = new Date();
 	userFrom.username = getUsername(message.reply_to_message.from, false);
