@@ -6,7 +6,6 @@
   "author": "Anton S <spaxi4@yandex.ru>",
   "license": "MIT",
   "engines": {
-    "node": "latest",
     "npm": "latest"
   },
   "scripts": {
@@ -16,18 +15,22 @@
     "heroku-postbuild": "rm -rf build && yarn run build"
   },
   "devDependencies": {
-    "babel-cli": "^7.0.0-alpha.18",
-    "babel-core": "^7.0.0-alpha.18",
-    "babel-plugin-transform-class-properties": "^7.0.0-alpha.18",
-    "babel-plugin-transform-decorators": "^7.0.0-alpha.18",
-    "babel-plugin-transform-es2015-modules-commonjs": "^7.0.0-alpha.18",
-    "babel-register": "^7.0.0-alpha.18",
+    "babel-cli": "^7.0.0-beta.1",
+    "babel-core": "^7.0.0-beta.1",
+    "babel-plugin-transform-class-properties": "^7.0.0-beta.1",
+    "babel-plugin-transform-decorators": "^7.0.0-beta.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^7.0.0-beta.1",
+    "babel-register": "^7.0.0-beta.1",
     "nodemon": "^1.11.0"
   },
   "dependencies": {
     "axios": "^0.16.2",
     "lodash": "^4.17.4",
+    "mysql": "^2.14.1",
+    "pg": "^7.2.0",
+    "reflect-metadata": "^0.1.10",
     "telegraf": "^3.9.0",
-    "typeorm": "^0.1.0-alpha.33"
+    "telegraf-ratelimit": "^1.1.0",
+    "typeorm": "0.0.11"
   }
 }
