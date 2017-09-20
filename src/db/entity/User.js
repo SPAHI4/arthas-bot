@@ -4,10 +4,10 @@ import { Chat } from './Chat';
 @Entity()
 export class User {
 
-	@PrimaryColumn('int')
+	@PrimaryColumn('string')
 	id = undefined;
 
-	@PrimaryColumn('int')
+	@PrimaryColumn('string')
 	chatId = undefined;
 
 	@Column('string')

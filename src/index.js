@@ -16,7 +16,7 @@ console.log('Я вернулся из небытия... ДА ДА Я');
 
 app.use(connectionMiddleware);
 app.use(selfGreeting);
-// app.use(limiter.middleware());
+app.use(limiter.middleware());
 
 
 if (!process.env.IS_EVIL) {
