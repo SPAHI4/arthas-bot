@@ -24,7 +24,6 @@ export const getConnection = async () => {
 		return Promise.resolve(connection);
 	} else {
 		connection = await createConnection(options);
-		await connection.syncSchema();
 		return connection;
 	}
 };
