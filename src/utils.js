@@ -17,3 +17,12 @@ export const limiter = new RateLimit({
 	limit: 2,
 	onLimitExceeded: (ctx, next) => ctx.reply('Не так быстро плес'),
 });
+
+export const esc = (strings, ...values) => {
+	let str = '';
+	strings.forEach((s, i) => {
+		str += s + (values[i] ? String(values[i]).replace(/(?=[*_`\[])/g, '\\') : '');
+	});
+	console.log(str)
+	return str;
+};
