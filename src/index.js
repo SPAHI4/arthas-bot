@@ -5,7 +5,7 @@ import commandInline from './sounds/inline'
 import soundsList from './sounds/soundsList'
 import selfGreeting from './greeting/selfGreeting';
 import userGreeting from './greeting/userGreeting';
-import { karmaMinus, karmaPlus, MINUS_TRIGGERS, PLUS_TRIGGERS } from './karma/index';
+import { karmaMinus, karmaPlus, MINUS_TRIGGERS, PLUS_TRIGGERS, topLaddera } from './karma/index';
 import { limiter } from './utils';
 import {connectionMiddleware, getConnection} from './db/connection';
 
@@ -22,13 +22,15 @@ app.use(limiter.middleware());
 if (!process.env.IS_EVIL) {
 	app.use(userGreeting);
 	app.hears(PLUS_TRIGGERS, karmaPlus);
-} else {
+}
+if (process.env.IS_EVIL || process.env.NODE_ENV !== 'production') {
 	app.hears(MINUS_TRIGGERS, karmaMinus);
 }
 
 app.on('inline_query', commandInline);
 
 app.command('sounds_list', soundsList);
+app.command('topLadder', topLaddera);
 
 
 app.telegram.getMe().then((botInfo) => {
