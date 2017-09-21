@@ -136,6 +136,6 @@ export const topLaddera = async ctx => {
 		.setLimit(10)
 		.getMany();
 
-	top = top.map((user, i) => `${getIcon(i + 1)} ${user.username} (*${user.karma}*)`).join('\n');
+	top = top.map((user, i) => `${getIcon(i + 1)} ${user.username} (*${user.karma || 0}*)`).join('\n');
 	return ctx.replyWithMarkdown(`Топ-3 ладдера по версии этого чятика:\n\n${top}`);
 }
