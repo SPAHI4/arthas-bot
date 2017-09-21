@@ -137,5 +137,6 @@ export const topLaddera = async ctx => {
 		.getMany();
 
 	top = top.map((user, i) => `${getIcon(i + 1)} ${user.username} (*${user.karma || 0}*)`).join('\n');
+	console.log(top);
 	return ctx.replyWithMarkdown(`Топ-3 ладдера по версии этого чятика:\n\n${top}`);
 }
