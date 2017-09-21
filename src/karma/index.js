@@ -7,7 +7,7 @@ export const MINUS_TRIGGERS = ['-', 'МИНУС', 'ДАУН', '👎'];
 
 
 export const karmaPlus = async (ctx) => {
-	const { message, replyWithMarkdown, userRepository } = ctx;
+	const { message, reply, userRepository } = ctx;
 	if (!message.reply_to_message) return;
 	let userTo = await userRepository.findOne(
 		{
@@ -29,15 +29,15 @@ export const karmaPlus = async (ctx) => {
 	});
 
 	if (userTo.id === userFrom.id) {
-		return replyWithMarkdown(`найс трай, очередняра`);
+		return reply(`найс трай, очередняра`);
 	}
 
 	if (userFrom.lastVote && (new Date().valueOf() - userFrom.lastVote.valueOf()) < 1000 * 60 * 5) {
-		return replyWithMarkdown(`НОТ РЕДИ`);
+		return reply(`НОТ РЕДИ`);
 	}
 
 	if (userFrom.karma < -10) {
-		return replyWithMarkdown(`карма меньше 10... земля тебе пухом, братишка`);
+		return reply(`карма меньше 10... земля тебе пухом, братишка`);
 	}
 
 	const oldKarma = userTo.karma;
@@ -49,13 +49,13 @@ export const karmaPlus = async (ctx) => {
 
 	await userRepository.persist([ userTo, userFrom ]);
 
-	replyWithMarkdown(sample([
+	reply(sample([
 		`_${userFrom.username}_ (${userFrom.karma}) дал рофлан _${getUsername(message.reply_to_message.from)}_ (${oldKarma} → *${userTo.karma}*)`,
 	]));
 };
 
 export const karmaMinus = async ctx => {
-	const { message, replyWithMarkdown, userRepository } = ctx;
+	const { message, reply, userRepository } = ctx;
 	if (!message.reply_to_message) return;
 	let userTo = await userRepository.findOne(
 		{
@@ -77,15 +77,15 @@ export const karmaMinus = async ctx => {
 	});
 
 	if (userTo.id === userFrom.id) {
-		return replyWithMarkdown(`найс трай, очередняра`);
+		return reply(`найс трай, очередняра`);
 	}
 
 	if (process.env.NODE_ENV === 'production' && userFrom.lastVote && (new Date().valueOf() - userFrom.lastVote.valueOf()) < 1000 * 60 * 5) {
-		return replyWithMarkdown(`НОТ РЕДИ`);
+		return reply(`НОТ РЕДИ`);
 	}
 
 	if (userFrom.karma < -10) {
-		return replyWithMarkdown(`карма меньше 10... земля тебе пухом, братишка`);
+		return reply(`карма меньше 10... земля тебе пухом, братишка`);
 	}
 
 	if (!random(0, 5)) {
@@ -97,7 +97,7 @@ export const karmaMinus = async ctx => {
 
 		await userRepository.persist([ userTo, userFrom ]);
 
-		return replyWithMarkdown(`гуччи линзы _${getUsername(message.reply_to_message.from)}_ отразили хейт _${userFrom.username}_ (${oldKarma} → *${userFrom.karma}*)`);
+		return reply(`гуччи линзы _${getUsername(message.reply_to_message.from)}_ отразили хейт _${userFrom.username}_ (${oldKarma} → *${userFrom.karma}*)`);
 	}
 
 	const oldKarma = userTo.karma;
@@ -109,7 +109,7 @@ export const karmaMinus = async ctx => {
 
 	await userRepository.persist([ userTo, userFrom ]);
 
-	replyWithMarkdown(sample([
+	reply(sample([
 		`_${userFrom.username}_ (${userFrom.karma}) залил соляры _${getUsername(message.reply_to_message.from)}_ (${oldKarma} → *${userTo.karma}*)`,
 	]));
 };
@@ -138,5 +138,5 @@ export const topLaddera = async ctx => {
 
 	top = top.map((user, i) => `${getIcon(i + 1)} ${user.username} (*${user.karma || 0}*)`).join('\n');
 	console.log(top);
-	return ctx.replyWithMarkdown(`Топ-3 ладдера по версии этого чятика:\n\n${top}`);
+	return ctx.reply(`Топ-3 ладдера по версии этого чятика:\n\n${top}`);
 }
