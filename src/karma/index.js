@@ -50,7 +50,7 @@ export const karmaPlus = async (ctx) => {
 	await userRepository.persist([ userTo, userFrom ]);
 
 	reply(sample([
-		`_${userFrom.username}_ (${userFrom.karma}) дал рофлан _${getUsername(message.reply_to_message.from)}_ (${oldKarma} → *${userTo.karma}*)`,
+		`_${userFrom.username}_ (${userFrom.karma}) дал рофлан _${userTo.username}_ (${oldKarma} → *${userTo.karma}*)`,
 	]));
 };
 
@@ -97,7 +97,7 @@ export const karmaMinus = async ctx => {
 
 		await userRepository.persist([ userTo, userFrom ]);
 
-		return reply(`гуччи линзы _${getUsername(message.reply_to_message.from)}_ отразили хейт _${userFrom.username}_ (${oldKarma} → *${userFrom.karma}*)`);
+		return reply(`гуччи линзы _${userTo.username}_ отразили хейт _${userFrom.username}_ (${oldKarma} → *${userFrom.karma}*)`);
 	}
 
 	const oldKarma = userTo.karma;
@@ -110,7 +110,7 @@ export const karmaMinus = async ctx => {
 	await userRepository.persist([ userTo, userFrom ]);
 
 	reply(sample([
-		`_${userFrom.username}_ (${userFrom.karma}) залил соляры _${getUsername(message.reply_to_message.from)}_ (${oldKarma} → *${userTo.karma}*)`,
+		`_${userFrom.username}_ (${userFrom.karma}) залил соляры _${userTo.username}_ (${oldKarma} → *${userTo.karma}*)`,
 	]));
 };
 
@@ -136,7 +136,7 @@ export const topLaddera = async ctx => {
 		.setLimit(10)
 		.getMany();
 
-	top = top.map((user, i) => `${getIcon(i + 1)} ${user.username} (*${user.karma || 0}*)`).join('\n');
+	top = top.map((user, i) => `${getIcon(i + 1)} ${user.username} (**${user.karma || 0}**)`).join('\n');
 	console.log(top);
 	return ctx.reply(`Топ-3 ладдера по версии этого чятика:\n\n${top}`);
 }
