@@ -22,15 +22,15 @@ app.use(limiter.middleware());
 if (!process.env.IS_EVIL) {
 	app.use(userGreeting);
 	app.hears(PLUS_TRIGGERS, karmaPlus);
+
+	app.on('inline_query', commandInline);
+
+	app.command('soundslist', soundsList);
+	app.command('topladder', topLaddera);
 }
 if (process.env.IS_EVIL || process.env.NODE_ENV !== 'production') {
 	app.hears(MINUS_TRIGGERS, karmaMinus);
 }
-
-app.on('inline_query', commandInline);
-
-app.command('soundslist', soundsList);
-app.command('topladder', topLaddera);
 
 
 app.telegram.getMe().then((botInfo) => {
