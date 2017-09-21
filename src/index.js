@@ -37,9 +37,3 @@ app.telegram.getMe().then((botInfo) => {
 });
 
 app.startPolling();
-
-getConnection().then(conn => {
-	console.log('Database connected');
-}).catch(e => {
-	console.error(e);
-});
