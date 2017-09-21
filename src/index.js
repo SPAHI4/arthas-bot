@@ -29,8 +29,8 @@ if (process.env.IS_EVIL || process.env.NODE_ENV !== 'production') {
 
 app.on('inline_query', commandInline);
 
-app.command('soundsList', soundsList);
-app.command('topLadder', topLaddera);
+app.command('soundslist', soundsList);
+app.command('topladder', topLaddera);
 
 
 app.telegram.getMe().then((botInfo) => {
