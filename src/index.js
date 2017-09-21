@@ -28,7 +28,7 @@ if (!process.env.IS_EVIL) {
 	app.command('soundslist', soundsList);
 	app.command('topladder', topLaddera);
 }
-if (process.env.IS_EVIL || process.env.NODE_ENV !== 'production') {
+if (process.env.IS_EVIL) {
 	app.hears(MINUS_TRIGGERS, karmaMinus);
 }
 
