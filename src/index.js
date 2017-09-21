@@ -36,4 +36,10 @@ app.telegram.getMe().then((botInfo) => {
 	app.options.username = botInfo.username;
 });
 
-app.startPolling();
+
+getConnection().then(conn => {
+	console.log('Database connected');
+	app.startPolling();
+}).catch(e => {
+	console.error(e);
+});
