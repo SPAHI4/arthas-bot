@@ -29,7 +29,7 @@ if (process.env.IS_EVIL || process.env.NODE_ENV !== 'production') {
 
 app.on('inline_query', commandInline);
 
-app.command('sounds_list', soundsList);
+app.command('soundsList', soundsList);
 app.command('topLadder', topLaddera);
 
 
