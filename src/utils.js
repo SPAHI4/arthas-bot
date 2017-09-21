@@ -7,7 +7,9 @@ export const isMe = (user) => Number(user.id) === Number(BOT_ID);
 export const getUsername = (user, showAt = true) => {
 	if (user.username) return (showAt ? '@' : '') + user.username;
 	if (user.first_name && user.last_name) return `${user.first_name} ${user.last_name}`;
-	return user.first_name;
+	if(user.first_name) return user.first_name;
+	if(user.last_name) return user.last_name;
+	return user.id;
 };
 
 export const limiter = new RateLimit({

@@ -16,20 +16,19 @@ console.log('Я вернулся из небытия... ДА ДА Я');
 
 app.use(connectionMiddleware);
 app.use(selfGreeting);
-app.use(limiter.middleware());
 
 
 if (!process.env.IS_EVIL) {
 	app.use(userGreeting);
-	app.hears(PLUS_TRIGGERS, karmaPlus);
+	app.hears(PLUS_TRIGGERS, limiter.middleware(), karmaPlus);
 
 	app.on('inline_query', commandInline);
 
 	app.command('soundslist', soundsList);
-	app.command('topladder', topLaddera);
+	app.command('topladder', limiter.middleware(), topLaddera);
 }
 if (process.env.IS_EVIL) {
-	app.hears(MINUS_TRIGGERS, karmaMinus);
+	app.hears(MINUS_TRIGGERS, limiter.middleware(), karmaMinus);
 }
 
 

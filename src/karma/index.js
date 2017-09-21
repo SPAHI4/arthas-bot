@@ -133,6 +133,7 @@ export const topLaddera = async ctx => {
 		.createQueryBuilder('user')
 		.where('user.chatId = :chatId', { chatId: ctx.message.chat.id })
 		.orderBy("user.karma", "DESC")
+		.limit(10)
 		.getMany();
 
 	top = top.map((user, i) => `${getIcon(i + 1)} ${user.username} (*${user.karma}*)`).join('\n');
