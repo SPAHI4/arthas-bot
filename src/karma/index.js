@@ -88,11 +88,12 @@ export const karmaMinus = async ctx => {
 		return replyWithHTML(`карма меньше 10... земля тебе пухом, братишка`);
 	}
 
-	if (!random(0, 5)) {
+	if (!random(0, 3)) {
 		userTo.username = getUsername(message.reply_to_message.from, false);
+		userTo.karma += 5;
 
 		const oldKarma = userFrom.karma;
-		userFrom.karma -= 3;
+		userFrom.karma -= 5;
 		userFrom.username = getUsername(message.from, false);
 
 		await userRepository.persist([ userTo, userFrom ]);
