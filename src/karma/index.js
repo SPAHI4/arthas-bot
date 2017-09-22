@@ -95,6 +95,7 @@ export const karmaMinus = async ctx => {
 		const oldKarma = userFrom.karma;
 		userFrom.karma -= 5;
 		userFrom.username = getUsername(message.from, false);
+		userFrom.lastVote = new Date();
 
 		await userRepository.persist([ userTo, userFrom ]);
 
