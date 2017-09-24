@@ -32,7 +32,7 @@ export const karmaPlus = async (ctx) => {
 		return replyWithHTML(`найс трай, очередняра`);
 	}
 
-	if (process.env.NODE_ENV === 'production' && userFrom.lastVote && (new Date().valueOf() - userFrom.lastVote.valueOf()) < 1000 * 60 * 5) {
+	if (process.env.NODE_ENV === 'production' && userFrom.lastVote && (new Date().valueOf() - userFrom.lastVote.valueOf()) < 1000 * 60 * 10) {
 		return replyWithHTML(`НОТ РЕДИ`);
 	}
 
@@ -80,7 +80,7 @@ export const karmaMinus = async ctx => {
 		return replyWithHTML(`найс трай, очередняра`);
 	}
 
-	if (process.env.NODE_ENV === 'production' && userFrom.lastVote && (new Date().valueOf() - userFrom.lastVote.valueOf()) < 1000 * 60 * 5) {
+	if (process.env.NODE_ENV === 'production' && userFrom.lastVote && (new Date().valueOf() - userFrom.lastVote.valueOf()) < 1000 * 60 * 10) {
 		return replyWithHTML(`НОТ РЕДИ`);
 	}
 
