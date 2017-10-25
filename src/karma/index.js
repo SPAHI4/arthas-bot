@@ -138,6 +138,10 @@ export const topLaddera = async ctx => {
 		// .setLimit(10)
 		.getMany();
 
-	top = top.map((user, i) => `${getIcon(i + 1)} ${user.username} (<b>${user.karma || 0}</b>)`).join('\n');
-	return ctx.replyWithHTML(`Топ-3 ладдера по версии этого чятика:\n\n${top}`);
+	top = top.map((user, i) => `${getIcon(i + 1)} ${user.username} (<b>${user.karma || 0}</b>)`);
+	
+	let display = top.slice(5);
+	display.push('...', Math.max(top.length - 5, 5)), 
+		
+	return ctx.replyWithHTML(`Топ-3 ладдера по версии этого чятика:\n\n${display.join('\n')}`);
 }
