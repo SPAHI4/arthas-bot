@@ -140,8 +140,10 @@ export const topLaddera = async ctx => {
 
 	top = top.map((user, i) => `${getIcon(i + 1)} ${user.username} (<b>${user.karma || 0}</b>)`);
 	
-	let display = top.slice(5);
-	display.push('...', Math.max(top.length - 5, 5)); 
+	let display = top.slice(0, 5);
+	if (top.length) {
+	    display.push('...', top.slice(-3)); 
+	}
 		
 	return ctx.replyWithHTML(`Топ-3 ладдера по версии этого чятика:\n\n${display.join('\n')}`);
 }
