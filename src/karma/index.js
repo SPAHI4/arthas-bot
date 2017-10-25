@@ -142,7 +142,7 @@ export const topLaddera = async ctx => {
 	
 	let display = top.slice(0, 5);
 	if (top.length) {
-	    display.push('...');
+	    display.push('\n...\n');
 	    display.push(...top.slice(-3));
 	}
 		
