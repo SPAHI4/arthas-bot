@@ -142,7 +142,8 @@ export const topLaddera = async ctx => {
 	
 	let display = top.slice(0, 5);
 	if (top.length) {
-	    display.push('...', top.slice(-3)); 
+	    display.push('...');
+	    display.push(...top.slice(-3));
 	}
 		
 	return ctx.replyWithHTML(`Топ-3 ладдера по версии этого чятика:\n\n${display.join('\n')}`);
