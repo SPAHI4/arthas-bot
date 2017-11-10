@@ -88,12 +88,12 @@ export const karmaMinus = async ctx => {
 		return replyWithHTML(`карма меньше 10... земля тебе пухом, братишка`);
 	}
 
-	if (!random(0, 3)) {
+	if (!random(0, 2)) {
 		userTo.username = getUsername(message.reply_to_message.from, false);
 		userTo.karma += 5;
 
 		const oldKarma = userFrom.karma;
-		userFrom.karma -= 5;
+		userFrom.karma -= Math.max(Math.floor(userFrom.karma / 5), 5);
 		userFrom.username = getUsername(message.from, false);
 		userFrom.lastVote = new Date();
 
