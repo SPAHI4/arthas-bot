@@ -20,7 +20,7 @@ app.use(selfGreeting);
 
 if (!process.env.IS_EVIL) {
 	app.use(userGreeting);
-	app.hears(PLUS_TRIGGERS, limiter.middleware(), karmaPlus);
+	app.hears(new RegExp(PLUS_TRIGGERS.join('|'), 'i'), limiter.middleware(), karmaPlus);
 
 	app.on('inline_query', commandInline);
 
@@ -28,7 +28,7 @@ if (!process.env.IS_EVIL) {
 	app.command('topladder', limiter.middleware(), topLaddera);
 }
 if (process.env.IS_EVIL) {
-	app.hears(MINUS_TRIGGERS, limiter.middleware(), karmaMinus);
+	app.hears(new RegExp(MINUS_TRIGGERS.join('|'), 'i'), limiter.middleware(), karmaMinus);
 }
 
 
