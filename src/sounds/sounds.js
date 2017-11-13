@@ -85,5 +85,6 @@ export default {
     "Лежать + сосать": "https://dl.dropbox.com/s/opzqbyulqkmq6b9/lezhat_sosat.mp3",
     "Это гэгэ": "https://dl.dropbox.com/s/es5utdsvd9f9w7k/eto_gg.mp3",
     "рофланВглориус": "https://dl.dropbox.com/s/foe3t6fro200r0b/roflanVgloruis.mp3",
-    "ХЫХЫХЫХЫ": "https://dl.dropbox.com/s/2t971k8y8aqh9vv/papich_hihihi.mp3"
+    "ХЫХЫХЫХЫ": "https://dl.dropbox.com/s/2t971k8y8aqh9vv/papich_hihihi.mp3",
+    "САНЯЯЯ": "https://dl.dropbox.com/s/71psz4r6izd5mhe/sanya.mp3",
 };
