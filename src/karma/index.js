@@ -29,11 +29,17 @@ export const karmaPlus = async (ctx) => {
 	});
 
 	if (userTo.id === userFrom.id) {
-		return replyWithHTML(`найс трай, очередняра`);
+		return replyWithHTML(sample(
+			`найс трай, очередняра`,
+			`You not blowing up, you blowing yourself, you Marlyn Manson (c)`,
+		));
 	}
 
 	if (process.env.NODE_ENV === 'production' && userFrom.lastVote && (new Date().valueOf() - userFrom.lastVote.valueOf()) < 1000 * 60 * 10) {
-		return replyWithHTML(`НОТ РЕДИ`);
+		return replyWithHTML(sample(
+			`НОТ РЕДИ`,
+			`НОТ ЭНАФ МАНА`,
+		));
 	}
 
 	if (userFrom.karma < -10) {
@@ -50,7 +56,7 @@ export const karmaPlus = async (ctx) => {
 	await userRepository.persist([ userTo, userFrom ]);
 
 	replyWithHTML(sample([
-		`<i>${userFrom.username}</i> (${userFrom.karma}) дал рофлан <i>${userTo.username}</i> (${oldKarma} → <b>${userTo.karma}</b>)`,
+		`<i>${userFrom.username}</i> (${userFrom.karma}) дал 💲 <b>рофланкойн</b> <i>${userTo.username}</i> (${oldKarma} → <b>${userTo.karma}</b>)`,
 	]));
 };
 
@@ -77,11 +83,14 @@ export const karmaMinus = async ctx => {
 	});
 
 	if (userTo.id === userFrom.id) {
-		return replyWithHTML(`найс трай, очередняра`);
+		return replyWithHTML(`Ты что, долбоеб? Нажмите на паузу, у вас долбоеб зам себе минусы ставит.`);
 	}
 
 	if (process.env.NODE_ENV === 'production' && userFrom.lastVote && (new Date().valueOf() - userFrom.lastVote.valueOf()) < 1000 * 60 * 10) {
-		return replyWithHTML(`НОТ РЕДИ`);
+		return replyWithHTML(sample(
+			`НОТ РЕДИ`,
+			`НОТ ЭНАФ МАНА`,
+		));
 	}
 
 	if (userFrom.karma < -10) {
