@@ -21,6 +21,7 @@ app.use(selfGreeting);
 if (!process.env.IS_EVIL) {
 	app.use(userGreeting);
 	app.hears(new RegExp(PLUS_TRIGGERS.join('|'), 'i'), limiter.middleware(), karmaPlus);
+	app.hears('+', limiter.middleware(), karmaPlus); // FIXME
 
 	app.on('inline_query', commandInline);
 
@@ -29,6 +30,7 @@ if (!process.env.IS_EVIL) {
 }
 if (process.env.IS_EVIL) {
 	app.hears(new RegExp(MINUS_TRIGGERS.join('|'), 'i'), limiter.middleware(), karmaMinus);
+	app.hears(['-','–'], limiter.middleware(), karmaMinus); // FIXME
 }
 
 
