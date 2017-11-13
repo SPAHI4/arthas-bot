@@ -2,8 +2,8 @@ import { sample, random } from 'lodash';
 import { User } from '../db/entity/User';
 import { esc, getUsername } from '../utils';
 
-export const PLUS_TRIGGERS = ['СПС', 'ДЯКУЮ', 'ОРУ', 'ПЛЮС', '👍', 'ТУПА ЛИКЕ'];
-export const MINUS_TRIGGERS = ['МИНУС', 'ДАУН', '👎'];
+export const PLUS_TRIGGERS = ['СПС', 'ДЯКУЮ', 'ОРУ', 'ЛОЛ', 'LUL', 'ПЛЮС', '👍', 'ТУПА ЛИКЕ'];
+export const MINUS_TRIGGERS = ['МИНУС', 'СОСИ', 'ДАУН', 'ДИНАХ', '👎'];
 
 
 export const karmaPlus = async (ctx) => {
