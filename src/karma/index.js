@@ -29,17 +29,17 @@ export const karmaPlus = async (ctx) => {
 	});
 
 	if (userTo.id === userFrom.id) {
-		return replyWithHTML(sample(
+		return replyWithHTML(sample([
 			`найс трай, очередняра`,
 			`You not blowing up, you blowing yourself, you Marlyn Manson (c)`,
-		));
+		]));
 	}
 
 	if (process.env.NODE_ENV === 'production' && userFrom.lastVote && (new Date().valueOf() - userFrom.lastVote.valueOf()) < 1000 * 60 * 10) {
-		return replyWithHTML(sample(
+		return replyWithHTML(sample([
 			`НОТ РЕДИ`,
 			`НОТ ЭНАФ МАНА`,
-		));
+		]));
 	}
 
 	if (userFrom.karma < -10) {
@@ -87,10 +87,10 @@ export const karmaMinus = async ctx => {
 	}
 
 	if (process.env.NODE_ENV === 'production' && userFrom.lastVote && (new Date().valueOf() - userFrom.lastVote.valueOf()) < 1000 * 60 * 10) {
-		return replyWithHTML(sample(
+		return replyWithHTML(sample([
 			`НОТ РЕДИ`,
 			`НОТ ЭНАФ МАНА`,
-		));
+		]));
 	}
 
 	if (userFrom.karma < -10) {
