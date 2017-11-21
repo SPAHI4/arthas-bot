@@ -221,6 +221,7 @@
     <dataset-grid-settings>
       <general>
         <enable-zooming value="true" />
+        <enable-column-tooltip value="true" />
       </general>
       <sorting>
         <nulls-first value="true" />
@@ -450,6 +451,7 @@
         <debug-execution-timeout value="600" />
         <focus-result value="false" />
         <prompt-execution value="false" />
+        <target-connection value="ASK" />
       </statement-execution>
       <script-execution>
         <command-line-interfaces />

@@ -97,7 +97,8 @@ export default async ({ message, reply, replyWithHTML, userRepository }) => {
 	}
 
 	isBusy = true; // на разные чаты пофиг
-	const [...strings, [winString, loseString]] = sample(...texts);
+	let strings = sample(...texts);
+	const [winString, loseString] = strings.pop();
 	let delay = 1000;
 	strings.forEach(string => {
 		setTimeout(() => {
