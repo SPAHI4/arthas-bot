@@ -1,6 +1,6 @@
 import { User } from '../db/entity/User';
 import { esc, getUsername } from '../utils';
-import {random,sample} from 'lodash';
+import { random, sample } from 'lodash';
 
 let isBusy = false;
 
@@ -73,7 +73,7 @@ const texts = [
 			(lose, all) => `-стрим
  
  Мистер плюсовый, теперь у тебя ${all}`,
-		]
+		],
 	],
 ];
 
@@ -96,10 +96,15 @@ export default async ({ message, reply, replyWithHTML, userRepository }) => {
 		return replyWithHTML(`Соре, нужно <b>${REQUIRED_KARMA}</b> рофланкоинов, у тебя <b>${user.karma}</b>`);
 	}
 
+	console.log('Starting game...');
+
 	isBusy = true; // на разные чаты пофиг
 	let strings = sample(...texts);
 	const [winString, loseString] = strings.pop();
 	let delay = 1000;
+
+	console.log(strings, winString, loseString);
+
 	strings.forEach(string => {
 		setTimeout(() => {
 			replyWithHTML(string);
@@ -107,25 +112,23 @@ export default async ({ message, reply, replyWithHTML, userRepository }) => {
 		delay += 1500;
 	});
 
-	const isWin = random(1, 100) <= 49; // 49%
-	const endCallback = async usr => {
-		await userRepository.persist(usr);
-		isBusy = false;
-	}
+	setTimeout(async () => {
+		const isWin = random(1, 100) <= 49; // 49%
+		const endCallback = async usr => {
+			await userRepository.persist(usr);
+			isBusy = false;
+		}
 
-	if (isWin) {
-		const win = BET * 2;
-		user.karma += win;
-		setTimeout(() => {
+		if (isWin) {
+			const win = BET * 2;
+			user.karma += win;
 			replyWithHTML(winString(win, user.karma));
-			endCallback(user);
-		}, delay + 500);
-	} else {
-		const lose = BET * 2;
-		user.karma -= lost;
-		setTimeout(() => {
+			await endCallback(user);
+		} else {
+			const lose = BET * 2;
+			user.karma -= lost;
 			replyWithHTML(loseString(lose, user.karma));
-			endCallback(user);
-		}, delay + 500);
-	}
+			await endCallback(user);
+		}
+	}, delay + 2000);
 }
