@@ -29,7 +29,7 @@ if (!process.env.IS_EVIL) {
 
 	app.command('soundslist', soundsList);
 	app.command('topladder', limiter.middleware(), topLaddera);
-	app.command('azino777', azino);
+	app.command('azino777', limiter.middleware(), azino);
 }
 if (process.env.IS_EVIL) {
 	app.hears(new RegExp(MINUS_TRIGGERS.join('|'), 'i'), limiter.middleware(), karmaMinus);
