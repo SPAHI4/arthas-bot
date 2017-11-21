@@ -97,6 +97,8 @@ export default async ({ message, reply, replyWithHTML, userRepository }) => {
 		chatId: message.chat.id,
 	});
 
+	user.username = getUsername(message.from, false);
+
 	if (REQUIRED_KARMA > user.karma) {
 		isBusy = false;
 		return replyWithHTML(`Соре, нужно <b>${REQUIRED_KARMA}</b> рофланкоинов, у тебя <b>${user.karma}</b>`);
