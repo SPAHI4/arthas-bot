@@ -6,6 +6,7 @@ import soundsList from './sounds/soundsList'
 import selfGreeting from './greeting/selfGreeting';
 import userGreeting from './greeting/userGreeting';
 import otvetochka from './greeting/otvetochka';
+import azino from './azino/azino';
 import { karmaMinus, karmaPlus, MINUS_TRIGGERS, PLUS_TRIGGERS, topLaddera } from './karma/index';
 import { limiter } from './utils';
 import {connectionMiddleware, getConnection} from './db/connection';
@@ -28,6 +29,7 @@ if (!process.env.IS_EVIL) {
 
 	app.command('soundslist', soundsList);
 	app.command('topladder', limiter.middleware(), topLaddera);
+	app.command('azino777', azino);
 }
 if (process.env.IS_EVIL) {
 	app.hears(new RegExp(MINUS_TRIGGERS.join('|'), 'i'), limiter.middleware(), karmaMinus);

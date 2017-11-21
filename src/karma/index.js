@@ -2,7 +2,7 @@ import { sample, random } from 'lodash';
 import { User } from '../db/entity/User';
 import { esc, getUsername } from '../utils';
 
-export const PLUS_TRIGGERS = ['СПС', 'ДЯКУЮ', 'ОРУ', 'ЛОЛ', 'LUL', 'ПЛЮС', '👍', 'ТУПА ЛИКЕ'];
+export const PLUS_TRIGGERS = ['СПС', 'ДЯКУЮ', 'ОРУ', 'LUL', 'ПЛЮС', '👍', 'ТУПА ЛИКЕ'];
 export const MINUS_TRIGGERS = ['МИНУС', 'СОСИ', 'ДЕБИЛ', 'ДИНАХ', '👎'];
 
 
@@ -35,7 +35,7 @@ export const karmaPlus = async (ctx) => {
 		]));
 	}
 
-	if (process.env.NODE_ENV === 'production' && userFrom.lastVote && (new Date().valueOf() - userFrom.lastVote.valueOf()) < 1000 * 60 * 10) {
+	if (process.env.NODE_ENV === 'production' && userFrom.lastVote && (new Date().valueOf() - userFrom.lastVote.valueOf()) < 1000 * 60 * 5) {
 		return replyWithHTML(sample([
 			`НОТ РЕДИ`,
 			`НОТ ЭНАФ МАНА`,
@@ -86,7 +86,7 @@ export const karmaMinus = async ctx => {
 		return replyWithHTML(`Ты что, долбоеб? Нажмите на паузу, у вас долбоеб зам себе минусы ставит.`);
 	}
 
-	if (process.env.NODE_ENV === 'production' && userFrom.lastVote && (new Date().valueOf() - userFrom.lastVote.valueOf()) < 1000 * 60 * 10) {
+	if (process.env.NODE_ENV === 'production' && userFrom.lastVote && (new Date().valueOf() - userFrom.lastVote.valueOf()) < 1000 * 60 * 5) {
 		return replyWithHTML(sample([
 			`НОТ РЕДИ`,
 			`НОТ ЭНАФ МАНА`,
