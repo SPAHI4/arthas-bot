@@ -82,6 +82,8 @@ export default async ({ message, reply, replyWithHTML, userRepository }) => {
 		return reply('Падажжи ебана!');
 	}
 
+	console.log(message);
+
 	const user = await userRepository.findOne(
 		{
 			id: message.from.id,
