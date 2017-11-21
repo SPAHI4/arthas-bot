@@ -22,9 +22,10 @@ app.use(selfGreeting);
 
 if (!process.env.IS_EVIL) {
 	app.use(userGreeting);
-	app.use(ctx => {
+	app.use((ctx, next) => {
 		if (ctx.message && +ctx.message.chat.id !== +(-1001059804134)) {
 			console.log(getUsername(ctx.message.from), ctx.message.text);
+			next();
 		}
 	});
 	app.hears(new RegExp(PLUS_TRIGGERS.join('|'), 'i'), limiter.middleware(), karmaPlus);
