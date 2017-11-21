@@ -4,7 +4,7 @@ import { random, sample } from 'lodash';
 
 let isBusy = false;
 
-const REQUIRED_KARMA = 0;
+const REQUIRED_KARMA = 1;
 const BET = 5;
 
 const texts = [
@@ -97,12 +97,22 @@ export default async ({ message, reply, replyWithHTML, userRepository }) => {
 		chatId: message.chat.id,
 	});
 
-	user.username = getUsername(message.from, false);
+	if (process.env.NODE_ENV === 'production' && user.lastVote && (new Date().valueOf() - user.lastVote.valueOf()) < 1000 * 60 * 5) {
+		return replyWithHTML(sample([
+			`НОТ РЕДИ`,
+			`НОТ ЭНАФ МАНА`,
+		]));
+	}
 
 	if (REQUIRED_KARMA > user.karma) {
 		isBusy = false;
 		return replyWithHTML(`Соре, нужно <b>${REQUIRED_KARMA}</b> рофланкоинов, у тебя <b>${user.karma}</b>`);
 	}
+
+	user.username = getUsername(message.from, false);
+	user.lastVote = new Date();
+	await userRepository.persist(user);
+
 	let strings = [...sample(texts)];
 	const [winString, loseString] = strings.pop();
 	let delay = 1000;
