@@ -98,6 +98,7 @@ export default async ({ message, reply, replyWithHTML, userRepository }) => {
 	});
 
 	if (process.env.NODE_ENV === 'production' && user.lastVote && (new Date().valueOf() - user.lastVote.valueOf()) < 1000 * 60 * 5) {
+		isBusy = false;
 		return replyWithHTML(sample([
 			`НОТ РЕДИ`,
 			`НОТ ЭНАФ МАНА`,
