@@ -8,7 +8,7 @@ import userGreeting from './greeting/userGreeting';
 import otvetochka from './greeting/otvetochka';
 import azino from './azino/azino';
 import { karmaMinus, karmaPlus, MINUS_TRIGGERS, PLUS_TRIGGERS, topLaddera } from './karma/index';
-import { limiter } from './utils';
+import { getUsername, limiter } from './utils';
 import {connectionMiddleware, getConnection} from './db/connection';
 
 
@@ -22,6 +22,11 @@ app.use(selfGreeting);
 
 if (!process.env.IS_EVIL) {
 	app.use(userGreeting);
+	app.use(ctx => {
+		if (ctx.message && +ctx.message.chat.id !== +(-1001059804134)) {
+			console.log(getUsername(ctx.message.from), ctx.message.text);
+		}
+	});
 	app.hears(new RegExp(PLUS_TRIGGERS.join('|'), 'i'), limiter.middleware(), karmaPlus);
 	app.hears('+', limiter.middleware(), karmaPlus); // FIXME
 
