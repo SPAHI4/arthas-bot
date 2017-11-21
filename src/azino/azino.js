@@ -4,7 +4,7 @@ import { random, sample } from 'lodash';
 
 let isBusy = false;
 
-const REQUIRED_KARMA = 5;
+const REQUIRED_KARMA = -50;
 const BET = 5;
 
 const texts = [
@@ -20,9 +20,9 @@ const texts = [
 		`Играть онлайн!`,
 		[
 			(win, all) => `Ебать, изи <b>+${win}</b>! На лакерычах.
- Теперь у тебя ${all}`,
-			(lose, all) => `Не вкачал талант, даун, <b>-${lost}</b>!
- Теперь у тебя <b>${all}</b>`,
+ Теперь у тебя ${all} рофланиумов`,
+			(lose, all) => `Не вкачал талант, даун, <b>-${lose}</b>!
+ Теперь у тебя <b>${all}</b> рофланиумов`,
 		],
 	],
 	[
@@ -35,12 +35,12 @@ const texts = [
 Держу за оба крыла`,
 		[
 			(win, all) => `ДА ПОЧЕМУУУ БЛЯТЬ!
- 
+
  <b>+${win}</b>!
  
- Теперь у тебя ${all}`,
-			(lose, all) => `Поймал, проверяй,  Изи сабжи для величайшего (меня). <b>-${lost}</b>!
- У тебя осталось <b>${all}</b>`,
+ Теперь у тебя ${all} рофликов`,
+			(lose, all) => `Поймал, проверяй,  Изи сабжи для величайшего (меня). <b>-${lose}</b>!
+ У тебя осталось <b>${all}</b> рофликов`,
 		],
 	],
 	[
@@ -51,15 +51,15 @@ const texts = [
 Отгрузят бабла`,
 		[
 			(win, all) => `АЙСФРАУД ГДЕ БАЛАНС?
- 
+
  <b>+${win}</b>!
  
- Теперь у тебя ${all}`,
+ Теперь у тебя ${all} рофланкоинов`,
 			(lose, all) => `(нет)
 
- минус <b>${lost}</b>, земля тебе пухом
+ минус <b>${lose}</b>, земля тебе пухом
  
- У тебя осталось <b>${all}</b>`,
+ У тебя осталось <b>${all}</b> рофланкоинов`,
 		],
 	],
 	[
@@ -69,20 +69,21 @@ const texts = [
 		'ШЕСТЬ!',
 		[
 			(win, all) => `ВЫ ВЫИГРАЛИ! <b>+${win}</b>!
- Теперь у тебя ${all}`,
+ Теперь у тебя ${all} сабжей`,
 			(lose, all) => `-стрим
- 
- Мистер плюсовый, теперь у тебя ${all}`,
+
+ Мистер плюсовый, теперь у тебя ${all} сабжей`,
 		],
 	],
 ];
 
 export default async ({ message, reply, replyWithHTML, userRepository }) => {
+
 	if (isBusy) {
 		return reply('Падажжи ебана!');
 	}
 
-	console.log(message);
+	isBusy = true; // на разные чаты пофиг
 
 	const user = await userRepository.findOne(
 		{
@@ -95,13 +96,10 @@ export default async ({ message, reply, replyWithHTML, userRepository }) => {
 	});
 
 	if (REQUIRED_KARMA > user.karma) {
+		isBusy = false;
 		return replyWithHTML(`Соре, нужно <b>${REQUIRED_KARMA}</b> рофланкоинов, у тебя <b>${user.karma}</b>`);
 	}
-
-	console.log('Starting game...');
-
-	isBusy = true; // на разные чаты пофиг
-	let strings = sample(...texts);
+	let strings = [...sample(texts)];
 	const [winString, loseString] = strings.pop();
 	let delay = 1000;
 
@@ -111,7 +109,7 @@ export default async ({ message, reply, replyWithHTML, userRepository }) => {
 		setTimeout(() => {
 			replyWithHTML(string);
 		}, delay);
-		delay += 1500;
+		delay += 2500;
 	});
 
 	setTimeout(async () => {
@@ -122,15 +120,15 @@ export default async ({ message, reply, replyWithHTML, userRepository }) => {
 		}
 
 		if (isWin) {
-			const win = BET * 2;
+			const win = BET;
 			user.karma += win;
-			replyWithHTML(winString(win, user.karma));
+			replyWithHTML(`${winString(win, user.karma)}, ${getUsername(user)}`);
 			await endCallback(user);
 		} else {
-			const lose = BET * 2;
-			user.karma -= lost;
-			replyWithHTML(loseString(lose, user.karma));
+			const lose = BET;
+			user.karma -= lose;
+			replyWithHTML(`${loseString(lose, user.karma)}, ${getUsername(user)}`);
 			await endCallback(user);
 		}
-	}, delay + 2000);
+	}, delay + 2500);
 }
