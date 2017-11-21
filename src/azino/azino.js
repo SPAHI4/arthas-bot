@@ -4,7 +4,7 @@ import { random, sample } from 'lodash';
 
 let isBusy = false;
 
-const REQUIRED_KARMA = -50;
+const REQUIRED_KARMA = 0;
 const BET = 5;
 
 const texts = [
