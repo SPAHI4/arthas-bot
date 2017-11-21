@@ -111,13 +111,10 @@ export default async ({ message, reply, replyWithHTML, userRepository }) => {
 
 	user.username = getUsername(message.from, false);
 	user.lastVote = new Date();
-	await userRepository.persist(user);
 
 	let strings = [...sample(texts)];
 	const [winString, loseString] = strings.pop();
 	let delay = 1000;
-
-	console.log(strings, winString, loseString);
 
 	strings.forEach(string => {
 		setTimeout(() => {
