@@ -28,7 +28,6 @@ if (!process.env.IS_EVIL) {
 		}
 		next();
 	});
-	app.hears(message => message && MINUS_TRIGGERS.includes(message.toUpperCase()), limiter.middleware(), karmaMinus);
 	app.hears(message => message && PLUS_TRIGGERS.includes(message.toUpperCase()), limiter.middleware(), karmaPlus);
 
 	app.on('inline_query', commandInline);
@@ -38,8 +37,7 @@ if (!process.env.IS_EVIL) {
 	process.env.AZINO_ENABLED && app.command('azino777', limiter.middleware(), azino);
 }
 if (process.env.IS_EVIL) {
-	app.hears(new RegExp(MINUS_TRIGGERS.join('|'), 'i'), limiter.middleware(), karmaMinus);
-	app.hears(['-','–'], limiter.middleware(), karmaMinus); // FIXME
+	app.hears(message => message && MINUS_TRIGGERS.includes(message.toUpperCase()), limiter.middleware(), karmaMinus);
 	app.hears('даун', otvetochka);
 }
 
