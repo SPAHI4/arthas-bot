@@ -34,7 +34,7 @@ if (!process.env.IS_EVIL) {
 
 	app.command('soundslist', soundsList);
 	app.command('topladder', limiter.middleware(), topLaddera);
-	process.env.AZINO_ENABLED && app.command('azino777', limiter.middleware(), azino);
+	process.env.AZINO_ENABLED === 'true' && app.command('azino777', limiter.middleware(), azino);
 }
 if (process.env.IS_EVIL) {
 	app.hears(message => message && MINUS_TRIGGERS.includes(message.toUpperCase()), limiter.middleware(), karmaMinus);
