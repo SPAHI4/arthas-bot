@@ -28,8 +28,8 @@ if (!process.env.IS_EVIL) {
 		}
 		next();
 	});
-	app.hears(new RegExp(PLUS_TRIGGERS.join('|'), 'i'), limiter.middleware(), karmaPlus);
-	app.hears('+', limiter.middleware(), karmaPlus); // FIXME
+	app.hears(message => message && MINUS_TRIGGERS.includes(message.toUpperCase()), limiter.middleware(), karmaMinus);
+	app.hears(message => message && PLUS_TRIGGERS.includes(message.toUpperCase()), limiter.middleware(), karmaPlus);
 
 	app.on('inline_query', commandInline);
 

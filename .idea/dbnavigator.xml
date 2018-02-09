@@ -30,6 +30,9 @@
       <console name="Connection" type="STANDARD" />
     </connection>
   </component>
+  <component name="DBNavigator.Project.DatabaseSessionManager">
+    <connection id="104c97be-d8ab-4c24-a725-858abbaa2979" />
+  </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
     <filter-list connection-id="104c97be-d8ab-4c24-a725-858abbaa2979" dataset="public.user" active-filter-id="EMPTY_FILTER">
       <filter id="a40ce1fc-a56f-4232-a37a-8bf1941e02a7" name="Filter" temporary="false" custom-name="false" type="basic" join-type="AND">
@@ -94,6 +97,7 @@
         </ssh-settings>
         <details>
           <charset value="UTF-8" />
+          <session-management value="true" />
           <ddl-file-binding value="true" />
           <database-logging value="false" />
           <connect-automatically value="true" />
@@ -272,6 +276,7 @@
           <content-type name="JSPx" enabled="true" />
           <content-type name="ASP" enabled="true" />
           <content-type name="YAML" enabled="true" />
+          <content-type name="Bash" enabled="true" />
         </content-types>
       </qualified-text-editor>
       <record-navigation>
@@ -451,7 +456,6 @@
         <debug-execution-timeout value="600" />
         <focus-result value="false" />
         <prompt-execution value="false" />
-        <target-connection value="ASK" />
       </statement-execution>
       <script-execution>
         <command-line-interfaces />
