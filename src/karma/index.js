@@ -35,7 +35,7 @@ export const karmaPlus = async (ctx) => {
 		]));
 	}
 
-	if (process.env.NODE_ENV === 'production' && userFrom.lastVote && (new Date().valueOf() - userFrom.lastVote.valueOf()) < 1000 * 60 * 5) {
+	if (process.env.NODE_ENV === 'production' && userFrom.lastVote && (new Date().valueOf() - userFrom.lastVote.valueOf()) < 1000 * 60 * 10) {
 		return replyWithHTML(sample([
 			`НОТ РЕДИ`,
 			`НОТ ЭНАФ МАНА`,
@@ -86,7 +86,7 @@ export const karmaMinus = async ctx => {
 		return replyWithHTML(`Ты что, долбоеб? Нажмите на паузу, у вас долбоеб зам себе минусы ставит.`);
 	}
 
-	if (process.env.NODE_ENV === 'production' && userFrom.lastVote && (new Date().valueOf() - userFrom.lastVote.valueOf()) < 1000 * 60 * 5) {
+	if (process.env.NODE_ENV === 'production' && userFrom.lastVote && (new Date().valueOf() - userFrom.lastVote.valueOf()) < 1000 * 60 * 10) {
 		return replyWithHTML(sample([
 			`НОТ РЕДИ`,
 			`НОТ ЭНАФ МАНА`,
