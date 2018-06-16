@@ -2,7 +2,7 @@ import { sample, random } from 'lodash';
 import { User } from '../db/entity/User';
 import { esc, getUsername } from '../utils';
 
-export const PLUS_TRIGGERS = ['+', 'СПС', 'ДЯКУЮ', 'ОРУ', 'LUL', 'ПЛЮС', '👍', 'ТУПА ЛИКЕ', 'ТУТ СЫГЛЫ', 'ТУТ СЫГЛЫ+++', 'КЛЕВЫЙ НИК'];
+export const PLUS_TRIGGERS = ['+', 'СПС', 'ДЯКУЮ', 'ОРУ', 'LUL', 'ПЛЮС', '👍', 'ТУПА ЛИКЕ', 'ТУТ СЫГЛЫ', 'ТУТ СЫГЛЫ+++', 'КЛЕВЫЙ НИК', 'СПРАВЕДЛИВО'];
 export const MINUS_TRIGGERS = ['-', 'МИНУС', 'СОСИ', 'ДЕБИЛ', 'ДИНАХ', '👎', 'САСАТ'];
 
 
