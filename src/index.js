@@ -13,7 +13,6 @@ import { limiter, getName, withUser, withReplyUser, replyOnly, extra } from './u
 import { connectionMiddleware, getConnection } from './db/connection';
 
 const IS_EVIL = env.get('IS_EVIL').required().asBool();
-const AZINO_ENABLED = env.get('AZINO_ENABLED').required().asBool();
 const PRIDE_ID = env.get('PRIDE_ID').required().asString();
 
 const app = new Telegraf(process.env.BOT_TOKEN);
@@ -25,6 +24,7 @@ app.use(connectionMiddleware);
 app.use(selfGreeting);
 
 if (!IS_EVIL) {
+	const AZINO_ENABLED = env.get('AZINO_ENABLED').required().asBool();
 	app.use(userGreeting);
 	app.use((ctx, next) => {
 		if (ctx.message && ctx.message.chat.id !== PRIDE_ID) {
