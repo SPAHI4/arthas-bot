@@ -1,7 +1,13 @@
-import { User } from '../db/entity/User';
-import { esc, getUsername } from '../utils';
 import { random, sample } from 'lodash';
+import { differenceInMinutes } from 'date-fns';
+import { compose } from 'telegraf';
+import { pluralize } from 'numeralize-ru';
 
+import { User } from '../db/entity/User';
+import { esc, limiter, replyOnly, withUser } from '../utils';
+
+const IS_PROD = process.env.NODE_ENV === 'production';
+export const CASINO_COOLDOWN = 10;
 let isBusy = false;
 
 const REQUIRED_KARMA = 1;
@@ -20,9 +26,9 @@ const texts = [
 		`Играть онлайн!`,
 		[
 			(win, all) => `Ебать, изи <b>+${win}</b>! На лакерычах.
- Теперь у тебя ${all} рофланиумов`,
+ Теперь у тебя ${all} ${pluralize(all, 'рофланиум', 'рофланиума', 'рофланиумов')}`,
 			(lose, all) => `Не вкачал талант, даун, <b>-${lose}</b>!
- Теперь у тебя <b>${all}</b> рофланиумов`,
+ Теперь у тебя <b>${all}</b> ${pluralize(all, 'рофланиум', 'рофланиума', 'рофланиумов')}`,
 		],
 	],
 	[
@@ -38,9 +44,9 @@ const texts = [
 
  <b>+${win}</b>!
  
- Теперь у тебя ${all} рофликов`,
+ Теперь у тебя ${all} ${pluralize(all, 'рофлик', 'рофлика', 'рофликов')}`,
 			(lose, all) => `Поймал, проверяй,  Изи сабжи для величайшего (меня). <b>-${lose}</b>!
- У тебя осталось <b>${all}</b> рофликов`,
+ У тебя осталось <b>${all}</b> ${pluralize(all, 'рофлик', 'рофлика', 'рофликов')}`,
 		],
 	],
 	[
@@ -54,12 +60,12 @@ const texts = [
 
  <b>+${win}</b>!
  
- Теперь у тебя ${all} рофланкоинов`,
+ Теперь у тебя ${all} ${pluralize(all, 'рофланкойн', 'рофланкойна', 'рофланкойнов')}`,
 			(lose, all) => `(нет)
 
  минус <b>${lose}</b>, земля тебе пухом
  
- У тебя осталось <b>${all}</b> рофланкоинов`,
+ У тебя осталось <b>${all}</b> ${pluralize(all, 'рофланкойн', 'рофланкойна', 'рофланкойнов')}`,
 		],
 	],
 	[
@@ -69,53 +75,42 @@ const texts = [
 		'ШЕСТЬ!',
 		[
 			(win, all) => `ВЫ ВЫИГРАЛИ! <b>+${win}</b>!
- Теперь у тебя ${all} сабжей`,
+ Теперь у тебя ${all} ${pluralize(all, 'сабж', 'сабжа', 'сабжей')}`,
 			(lose, all) => `-стрим
 
 <b>-${lose}</b>
 
- Мистер плюсовый (минусовый), теперь у тебя ${all} сабжей`,
+ Мистер плюсовый (минусовый), теперь у тебя ${all} ${pluralize(all, 'сабж', 'сабжа', 'сабжей')}`,
 		],
 	],
 ];
 
-export default async ({ message, reply, replyWithHTML, userRepository }) => {
+const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, userRepository, user }) => {
 
 	if (isBusy) {
-		return reply('Падажжи ебана!');
+		return replyWithHTMLQuote('Падажжи ебана!');
 	}
 
 	isBusy = true; // на разные чаты пофиг
 
-	const user = await userRepository.findOne(
-		{
-			id: message.from.id,
-			chatId: message.chat.id,
-		},
-	) || userRepository.create({
-		id: message.from.id,
-		chatId: message.chat.id,
-	});
-
-	if (process.env.NODE_ENV === 'production' && user.lastVote && (new Date().valueOf() - user.lastVote.valueOf()) < 1000 * 60 * 5) {
+	if (IS_PROD && differenceInMinutes(user.lastCasino, new Date()) < CASINO_COOLDOWN) {
 		isBusy = false;
-		return replyWithHTML(sample([
-			`НОТ РЕДИ`,
+		return replyWithHTMLQuote(sample([
+			`АВТИКИ ПОКА ЗАКРЫТЫ ДЛЯ ТЕБЯ`,
 			`НОТ ЭНАФ МАНА`,
 		]));
 	}
 
 	if (REQUIRED_KARMA > user.karma) {
 		isBusy = false;
-		return replyWithHTML(`Соре, нужно <b>${REQUIRED_KARMA}</b> рофланкоинов, у тебя <b>${user.karma}</b>`);
+		return replyWithHTMLQuote(`Соре, нужно <b>${REQUIRED_KARMA}</b> ${pluralize(REQUIRED_KARMA, 'рофланкойн', 'рофланкойна', 'рофланкойнов')}, у тебя <b>${user.karma}</b>`);
 	}
 
-	user.username = getUsername(message.from, false);
-	user.lastVote = new Date();
+	user.lastCasino = new Date();
 	await userRepository.persist(user);
 
-	let strings = [...sample(texts)];
-	const [winString, loseString] = strings.pop();
+	let strings = [ ...sample(texts) ];
+	const [ winString, loseString ] = strings.pop();
 	let delay = 1000;
 
 	strings.forEach(string => {
@@ -135,13 +130,18 @@ export default async ({ message, reply, replyWithHTML, userRepository }) => {
 		if (isWin) {
 			const win = BET;
 			user.karma += win;
-			replyWithHTML(`${winString(win, user.karma)}, ${getUsername(user)}`);
+			replyWithHTMLQuote(`${winString(win, user.karma)}, ${user.getMention()}`);
 			await endCallback(user);
 		} else {
 			const lose = BET;
 			user.karma -= lose;
-			replyWithHTML(`${loseString(lose, user.karma)}, ${getUsername(user)}`);
+			replyWithHTMLQuote(`${loseString(lose, user.karma)}, ${user.getMention()}`);
 			await endCallback(user);
 		}
 	}, delay + 2500);
-}
+};
+
+export default compose([
+	withUser,
+	casinoImpl,
+]);

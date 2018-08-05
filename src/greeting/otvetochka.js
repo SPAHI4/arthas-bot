@@ -1,5 +1,5 @@
 export default ctx => {
   if (!ctx.message.reply_to_message) {
-    return ctx.reply('У тебя погоняло даун');
+    return ctx.replyWithQuote('У тебя погоняло даун');
   }
 }

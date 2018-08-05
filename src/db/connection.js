@@ -1,14 +1,17 @@
 import { createConnection } from 'typeorm';
+import env from 'env-var';
+
 import { User } from './entity/User';
-import { Chat } from './entity/Chat';
+import { UserGlobal } from './entity/UserGlobal';
+import { Chat } from './entity/Chat'
+
+const DATABASE_URL = env.get('DATABASE_URL').required().asString();
 
 let connection;
 
-const options = {
-	driver: {
-		type: 'postgres',
-		url: process.env.DATABASE_URL,
-	},
+export const options = {
+	type: 'postgres',
+	url: DATABASE_URL,
 	entities: [
 		User,
 	],
@@ -16,7 +19,7 @@ const options = {
 		logQueries: process.env.NODE_ENV !== 'production',
 		logFailedQueryError: true,
 	},
-	autoSchemaSync: true,
+	synchronize: true,
 };
 
 export const getConnection = async () => {
