@@ -11,20 +11,20 @@ export class User {
 	chatId = undefined;
 
 	@Column('varchar', { nullable: true })
-	username = '';
+	username = undefined;
 
 	@Column('varchar', { nullable: true })
-	firstName = '';
+	firstName = undefined;
 
 	@Column('varchar', { nullable: true })
-	lastName = '';
+	lastName = undefined;
 
 	@Column({
 		type: 'float',
 		default: 0,
 		nullable: true,
 	})
-	karma = 0;
+	karma = undefined;
 
 	@Column({
 		type: 'timestamp',

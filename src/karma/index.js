@@ -34,7 +34,7 @@ const karmaPlusImpl = async (ctx) => {
 
 	userFrom.lastVote = new Date();
 
-	await userRepository.persist([ userTo, userFrom ]);
+	await userRepository.save([ userTo, userFrom ]);
 
 	replyWithHTML(sample([
 		`<i>${userFrom.username}</i> (${userFrom.karma}) дал 💲 <b>рофланкойн</b> <i>${userTo.username}</i> (${oldKarma} → <b>${userTo.karma}</b>)`,
@@ -76,7 +76,7 @@ const karmaMinusImpl = async ctx => {
 		userFrom.karma -= Math.max(Math.floor(userFrom.karma / 10), 3);
 		userFrom.lastVote = new Date();
 
-		await userRepository.persist([ userTo, userFrom ]);
+		await userRepository.save([ userTo, userFrom ]);
 
 		return replyWithHTML(`гуччи линзы <i>${userTo.getMention()}</i> отразили хейт <i>${userFrom.getMention()}</i> (${oldKarma} → <b>${userFrom.karma}</b>)`);
 	}
@@ -86,7 +86,7 @@ const karmaMinusImpl = async ctx => {
 
 	userFrom.lastVote = new Date();
 
-	await userRepository.persist([ userTo, userFrom ]);
+	await userRepository.save([ userTo, userFrom ]);
 
 	replyWithHTML(sample([
 		`<i>${userFrom.getMention()}</i> (${userFrom.karma}) залил соляры <i>${userTo.getMention()}</i> (${oldKarma} → <b>${userTo.karma}</b>)`,

@@ -4,7 +4,7 @@ import { sample } from 'lodash';
 export default async (ctx, next) => {
 	if (ctx.message && ctx.message.new_chat_member && !isMe(ctx.message.new_chat_member)) {
 		const username = getMention(ctx.message.new_chat_member);
-		ctx.reply(sample([
+		ctx.replyWithHTML(sample([
 			`А я все думал, когда же ты появишься, ${username}!`,
 			`Добре почантек, ${username}`,
 			`Кулиалити, ${username}`,

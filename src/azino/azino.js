@@ -87,58 +87,64 @@ const texts = [
 
 const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, userRepository, user }) => {
 
-	if (isBusy) {
-		return replyWithHTMLQuote('Падажжи ебана!');
-	}
+	try {
 
-	isBusy = true; // на разные чаты пофиг
+		if (isBusy) {
+			return replyWithHTMLQuote('Падажжи ебана!');
+		}
 
-	if (IS_PROD && differenceInMinutes(user.lastCasino, new Date()) < CASINO_COOLDOWN) {
-		isBusy = false;
-		return replyWithHTMLQuote(sample([
-			`АВТИКИ ПОКА ЗАКРЫТЫ ДЛЯ ТЕБЯ`,
-			`НОТ ЭНАФ МАНА`,
-		]));
-	}
+		isBusy = true; // на разные чаты пофиг
 
-	if (REQUIRED_KARMA > user.karma) {
-		isBusy = false;
-		return replyWithHTMLQuote(`Соре, нужно <b>${REQUIRED_KARMA}</b> ${pluralize(REQUIRED_KARMA, 'рофланкойн', 'рофланкойна', 'рофланкойнов')}, у тебя <b>${user.karma}</b>`);
-	}
-
-	user.lastCasino = new Date();
-	await userRepository.persist(user);
-
-	let strings = [ ...sample(texts) ];
-	const [ winString, loseString ] = strings.pop();
-	let delay = 1000;
-
-	strings.forEach(string => {
-		setTimeout(() => {
-			replyWithHTML(string);
-		}, delay);
-		delay += 2500;
-	});
-
-	setTimeout(async () => {
-		const isWin = random(1, 100) <= 49; // 49%
-		const endCallback = async usr => {
-			await userRepository.persist(usr);
+		if (IS_PROD && differenceInMinutes(user.lastCasino, new Date()) < CASINO_COOLDOWN) {
 			isBusy = false;
+			return replyWithHTMLQuote(sample([
+				`АВТИКИ ПОКА ЗАКРЫТЫ ДЛЯ ТЕБЯ`,
+				`НОТ ЭНАФ МАНА`,
+			]));
 		}
 
-		if (isWin) {
-			const win = BET;
-			user.karma += win;
-			replyWithHTMLQuote(`${winString(win, user.karma)}, ${user.getMention()}`);
-			await endCallback(user);
-		} else {
-			const lose = BET;
-			user.karma -= lose;
-			replyWithHTMLQuote(`${loseString(lose, user.karma)}, ${user.getMention()}`);
-			await endCallback(user);
+		if (REQUIRED_KARMA > user.karma) {
+			isBusy = false;
+			return replyWithHTMLQuote(`Соре, нужно <b>${REQUIRED_KARMA}</b> ${pluralize(REQUIRED_KARMA, 'рофланкойн', 'рофланкойна', 'рофланкойнов')}, у тебя <b>${user.karma}</b>`);
 		}
-	}, delay + 2500);
+
+		user.lastCasino = new Date();
+		await userRepository.save(user);
+
+		let strings = [ ...sample(texts) ];
+		const [ winString, loseString ] = strings.pop();
+		let delay = 1000;
+
+		strings.forEach(string => {
+			setTimeout(() => {
+				replyWithHTML(string);
+			}, delay);
+			delay += 2500;
+		});
+
+		setTimeout(async () => {
+			const isWin = random(1, 100) <= 49; // 49%
+			const endCallback = async usr => {
+				await userRepository.save(usr);
+				isBusy = false;
+			}
+
+			if (isWin) {
+				const win = BET;
+				user.karma += win;
+				replyWithHTMLQuote(`${winString(win, user.karma)}, ${user.getMention()}`);
+				await endCallback(user);
+			} else {
+				const lose = BET;
+				user.karma -= lose;
+				replyWithHTMLQuote(`${loseString(lose, user.karma)}, ${user.getMention()}`);
+				await endCallback(user);
+			}
+		}, delay + 2500);
+
+	} catch (e) {
+		isBusy = false;
+	}
 };
 
 export default compose([

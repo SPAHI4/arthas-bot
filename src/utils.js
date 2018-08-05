@@ -32,12 +32,13 @@ export const esc = (strings, ...values) => {
 };
 
 export const getOrCreateUser = async ({ userRepository }, { from, chat }) => {
+	// .save method has an issue with duplicate primary keys
 	const user = await userRepository.findOne(
 		{
 			id: from.id,
 			chatId: chat.id,
 		},
-	) || userRepository.create({
+	) || await userRepository.insert({
 		id: from.id,
 		chatId: chat.id,
 	});
