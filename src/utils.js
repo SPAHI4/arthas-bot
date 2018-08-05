@@ -81,7 +81,7 @@ export const withReplyUser = async (ctx, next) => {
 export const replyOnly = (texts = []) => ({ message, replyWithHTML }, next) => {
 	if (!message.reply_to_message) return;
 	if (message.reply_to_message.from.id === message.from.id) {
-		replyWithHTML(sample(texts), { reply_to_message_id: message.id });
+		return replyWithHTML(sample(texts), { reply_to_message_id: message.id });
 	}
 
 	next();
