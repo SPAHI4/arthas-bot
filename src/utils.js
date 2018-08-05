@@ -3,6 +3,7 @@ import { sample } from 'lodash';
 import env from 'env-var';
 
 const BOT_TOKEN = env.get('BOT_TOKEN').required().asString();
+const IS_PROD = process.env.NODE_ENV === 'production';
 
 const BOT_ID = BOT_TOKEN.split(':')[ 0 ];
 
@@ -33,15 +34,27 @@ export const esc = (strings, ...values) => {
 
 export const getOrCreateUser = async ({ userRepository }, { from, chat }) => {
 	// .save method has an issue with duplicate primary keys
-	const user = await userRepository.findOne(
+	let user = await userRepository.findOne(
 		{
 			id: from.id,
 			chatId: chat.id,
 		},
-	) || await userRepository.insert({
-		id: from.id,
-		chatId: chat.id,
-	});
+	);
+
+	if (!user) {
+		// some kind of bugs in babel transpiling, should work with typescript
+		await userRepository.insert({
+			id: from.id,
+			chatId: chat.id,
+			karma: IS_PROD ? 0 : 100,
+		});
+		user = await userRepository.findOne(
+			{
+				id: from.id,
+				chatId: chat.id,
+			},
+		);
+	}
 
 	user.username = from.username;
 	user.firstName = from.first_name;
@@ -65,7 +78,7 @@ export const withReplyUser = async (ctx, next) => {
 	next();
 };
 
-export const replyOnly = (texts = []) => ({ message }, next) => {
+export const replyOnly = (texts = []) => ({ message, replyWithHTML }, next) => {
 	if (!message.reply_to_message) return;
 	if (message.reply_to_message.from.id === message.from.id) {
 		if (!text.length) return;

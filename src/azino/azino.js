@@ -8,10 +8,10 @@ import { esc, limiter, replyOnly, withUser } from '../utils';
 
 const IS_PROD = process.env.NODE_ENV === 'production';
 export const CASINO_COOLDOWN = 10;
-let isBusy = false;
-
 const REQUIRED_KARMA = 1;
 const BET = 5;
+
+let isBusy = false;
 
 const texts = [
 	[
@@ -95,7 +95,7 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 
 		isBusy = true; // на разные чаты пофиг
 
-		if (IS_PROD && differenceInMinutes(user.lastCasino, new Date()) < CASINO_COOLDOWN) {
+		if (!IS_PROD && user.lastCasino && differenceInMinutes(new Date(), user.lastCasino) < CASINO_COOLDOWN) {
 			isBusy = false;
 			return replyWithHTMLQuote(sample([
 				`АВТИКИ ПОКА ЗАКРЫТЫ ДЛЯ ТЕБЯ`,
@@ -132,18 +132,19 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 			if (isWin) {
 				const win = BET;
 				user.karma += win;
-				replyWithHTMLQuote(`${winString(win, user.karma)}, ${user.getMention()}`);
+				replyWithHTML(`${winString(win, user.karma)}, ${user.getMention()}`);
 				await endCallback(user);
 			} else {
 				const lose = BET;
 				user.karma -= lose;
-				replyWithHTMLQuote(`${loseString(lose, user.karma)}, ${user.getMention()}`);
+				replyWithHTML(`${loseString(lose, user.karma)}, ${user.getMention()}`);
 				await endCallback(user);
 			}
 		}, delay + 2500);
 
 	} catch (e) {
 		isBusy = false;
+		console.error(e);
 	}
 };
 

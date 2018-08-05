@@ -18,7 +18,7 @@ const karmaPlusImpl = async (ctx) => {
 	let userTo = ctx.replyUser;
 	let userFrom = ctx.user;
 
-	if (IS_PROD && differenceInMinutes(userFrom.lastVote, new Date()) < VOTE_COOLDOWN) {
+	if (IS_PROD && userFrom.lastVote && differenceInMinutes(new Date(), userFrom.lastVote) < VOTE_COOLDOWN) {
 		return replyWithHTMLQuote(sample([
 			`НОТ РЕДИ`,
 			`НОТ ЭНАФ МАНА`,
@@ -57,7 +57,7 @@ const karmaMinusImpl = async ctx => {
 	let userTo = ctx.replyUser;
 	let userFrom = ctx.user;
 
-	if (IS_PROD && differenceInMinutes(userFrom.lastVote, new Date()) < VOTE_COOLDOWN) {
+	if (IS_PROD && userFrom.lastVote && differenceInMinutes(new Date(), userFrom.lastVote) < VOTE_COOLDOWN) {
 		return replyWithHTMLQuote(sample([
 			`НОТ РЕДИ`,
 			`НОТ ЭНАФ МАНА`,

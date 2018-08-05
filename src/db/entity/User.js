@@ -20,9 +20,8 @@ export class User {
 	lastName = undefined;
 
 	@Column({
-		type: 'float',
-		default: 0,
-		nullable: true,
+		type: 'real',
+		nullable: true, // not 0 by default to not lose value with schema autosync
 	})
 	karma = undefined;
 
@@ -43,7 +42,7 @@ export class User {
 	}
 
 	getMention() {
-		return  `<a href="tg://user?id=${this.id}">${this.getName()}</a>`;
+		return `<a href="tg://user?id=${this.id}">${this.getName()}</a>`;
 	}
 
 }
