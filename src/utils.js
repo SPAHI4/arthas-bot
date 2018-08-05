@@ -11,7 +11,7 @@ export const isMe = (user) => Number(user.id) === Number(BOT_ID);
 
 
 export const getName = user => {
-	return user.username || `${user.first_name} ${user.last_name}`;
+	return user.username || `${user.first_name || ''} ${user.last_name || ''}`;
 };
 
 export const getMention = user => {

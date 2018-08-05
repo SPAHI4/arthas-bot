@@ -38,7 +38,7 @@ export class User {
 	lastCasino = undefined;
 
 	getName() {
-		return this.username || `${this.firstName} ${this.lastName}`;
+		return this.username || `${this.firstName || ''} ${this.lastName || ''}`;
 	}
 
 	getMention() {
