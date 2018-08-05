@@ -10,13 +10,13 @@ export class User {
 	@PrimaryColumn('varchar', { length: 255 })
 	chatId = undefined;
 
-	@Column('varchar')
+	@Column('varchar', { nullable: true })
 	username = '';
 
-	@Column('varchar')
+	@Column('varchar', { nullable: true })
 	firstName = '';
 
-	@Column('varchar')
+	@Column('varchar', { nullable: true })
 	lastName = '';
 
 	@Column({
