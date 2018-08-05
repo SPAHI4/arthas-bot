@@ -27,7 +27,7 @@ if (!IS_EVIL) {
 	const PRIDE_ID = env.get('PRIDE_ID').required().asString();
 	app.use(userGreeting);
 	app.use((ctx, next) => {
-		if (ctx.message && ctx.message.chat.id !== PRIDE_ID) {
+		if (ctx.message && String(ctx.message.chat.id) !== PRIDE_ID) {
 			console.log(getName(ctx.message.from), ctx.message.text);
 		}
 		next();

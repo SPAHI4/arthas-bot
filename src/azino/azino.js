@@ -95,7 +95,7 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 
 		isBusy = true; // на разные чаты пофиг
 
-		if (!IS_PROD && user.lastCasino && differenceInMinutes(new Date(), user.lastCasino) < CASINO_COOLDOWN) {
+		if (IS_PROD && user.lastCasino && differenceInMinutes(new Date(), user.lastCasino) < CASINO_COOLDOWN) {
 			isBusy = false;
 			return replyWithHTMLQuote(sample([
 				`АВТИКИ ПОКА ЗАКРЫТЫ ДЛЯ ТЕБЯ`,
