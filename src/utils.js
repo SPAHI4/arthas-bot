@@ -76,7 +76,7 @@ export const replyOnly = (texts = []) => ({ message }, next) => {
 
 export const extra = (ctx, next) => {
 	ctx.replyWithHTMLQuote = (text, opts = {}) =>
-		ctx.replyWithHTML(text, { reply_to_message_id: ctx.message.id, ...opts });
+		ctx.replyWithHTML(text, { reply_to_message_id: ctx.message.message_id, ...opts });
 
 	next();
 };
