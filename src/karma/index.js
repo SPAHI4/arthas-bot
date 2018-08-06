@@ -124,7 +124,7 @@ export const topLaddera = async ctx => {
 		// .setLimit(10)
 		.getMany();
 
-	top = top.map((user, i) => `${getIcon(i + 1)} ${user.getLink()} (<b>${user.karma || 0}</b>)`);
+	top = top.map((user, i) => `${getIcon(i + 1)} ${user.getName()} (<b>${user.karma || 0}</b>)`);
 
 	let display = top.slice(0, 5);
 	if (top.length) {
