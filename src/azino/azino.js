@@ -76,7 +76,9 @@ const texts = [
 		[
 			(win, all) => `ВЫ ВЫИГРАЛИ! <b>+${win}</b>!
  Теперь у тебя ${all} ${pluralize(all, 'сабж', 'сабжа', 'сабжей')}`,
-			(lose, all) => `-стрим
+			(lose, all) => `ТАЗАШО
+
+-стрим
 
 <b>-${lose}</b>
 
@@ -130,9 +132,15 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 			}
 
 			if (isWin) {
-				const win = BET;
-				user.karma += win;
-				replyWithHTML(`${winString(win, user.karma)}, ${user.getMention()}`);
+				if (!random(0, 10)) {
+					const win = BET * 3;
+					user.karma += win;
+					replyWithHTML(`Ебааать, бонус от Коци! Легчайшие +${win} для ${user.getMention()}! Мое увожение`);
+				} else {
+					const win = BET;
+					user.karma += win;
+					replyWithHTML(`${winString(win, user.karma)}, ${user.getMention()}`);
+				}
 				await endCallback(user);
 			} else {
 				const lose = BET;

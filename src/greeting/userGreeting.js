@@ -11,6 +11,7 @@ export default async (ctx, next) => {
 			`Да, это ${username}`,
 			`Вот и новый челикслав подъехал, ${username}`,
 			`Кулиссимо, сказал Паписсимо, ${username}`,
+			`Оп-па, ${username}`,
 		]));
 	}
 	next();
