@@ -128,9 +128,9 @@ export const topLaddera = async ctx => {
 
 	let display = top.slice(0, 5);
 	if (top.length) {
-		display.push('\n...\n\n Херальды: \n');
+		display.push('\n...\n\n Херальды 🤢');
 		display.push(...top.slice(-3));
 	}
 
-	return ctx.replyWithHTML(`Топ-3 ладдера по версии этого чятика:\n\n Дивайны 😎: \n${display.join('\n')}`);
+	return ctx.replyWithHTML(`Топ-3 ладдера по версии этого чятика:\n\n Дивайны 😎 \n${display.join('\n')}`);
 };
