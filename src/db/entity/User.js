@@ -42,6 +42,10 @@ export class User {
 	}
 
 	getMention() {
+		return `<a href="mention:${this.id}">${this.getName()}</a>`;
+	}
+
+	getLink() {
 		return `<a href="tg://user?id=${this.id}">${this.getName()}</a>`;
 	}
 
