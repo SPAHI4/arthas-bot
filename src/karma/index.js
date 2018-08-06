@@ -78,7 +78,7 @@ const karmaMinusImpl = async ctx => {
 
 		await userRepository.save([ userTo, userFrom ]);
 
-		return replyWithHTML(`гуччи линзы <i>${userTo.getName()()}</i> отразили хейт <i>${userFrom.getName()()}</i> (${oldKarma} → <b>${userFrom.karma}</b>)`);
+		return replyWithHTML(`гуччи линзы <i>${userTo.getName()}</i> отразили хейт <i>${userFrom.getName()}</i> (${oldKarma} → <b>${userFrom.karma}</b>)`);
 	}
 
 	const oldKarma = userTo.karma;
