@@ -37,7 +37,7 @@ const karmaPlusImpl = async (ctx) => {
 	await userRepository.save([ userTo, userFrom ]);
 
 	replyWithHTML(sample([
-		`<i>${userFrom.username}</i> (${userFrom.karma}) дал 💲 <b>рофланкойн</b> <i>${userTo.username}</i> (${oldKarma} → <b>${userTo.karma}</b>)`,
+		`<i>${userFrom.getName()}</i> (${userFrom.karma}) дал 💲 <b>рофланкойн</b> <i>${userTo.getName()}</i> (${oldKarma} → <b>${userTo.karma}</b>)`,
 	]));
 };
 
@@ -78,7 +78,7 @@ const karmaMinusImpl = async ctx => {
 
 		await userRepository.save([ userTo, userFrom ]);
 
-		return replyWithHTML(`гуччи линзы <i>${userTo.getMention()}</i> отразили хейт <i>${userFrom.getMention()}</i> (${oldKarma} → <b>${userFrom.karma}</b>)`);
+		return replyWithHTML(`гуччи линзы <i>${userTo.getName()()}</i> отразили хейт <i>${userFrom.getName()()}</i> (${oldKarma} → <b>${userFrom.karma}</b>)`);
 	}
 
 	const oldKarma = userTo.karma;
@@ -89,7 +89,7 @@ const karmaMinusImpl = async ctx => {
 	await userRepository.save([ userTo, userFrom ]);
 
 	replyWithHTML(sample([
-		`<i>${userFrom.getMention()}</i> (${userFrom.karma}) залил соляры <i>${userTo.getMention()}</i> (${oldKarma} → <b>${userTo.karma}</b>)`,
+		`<i>${userFrom.getName()()}</i> (${userFrom.karma}) залил соляры <i>${userTo.getName()()}</i> (${oldKarma} → <b>${userTo.karma}</b>)`,
 	]));
 };
 
