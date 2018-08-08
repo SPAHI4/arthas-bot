@@ -51,7 +51,7 @@ export class User {
 	}
 
 	getVotePoint() {
-		const point = 1 + floor(this.karma / 10, 1);
+		const point = 1 + floor(this.karma / 100, 1);
 		return point > 0 ? point : 0.1;
 	}
 
