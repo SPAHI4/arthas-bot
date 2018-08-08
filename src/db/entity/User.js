@@ -1,4 +1,5 @@
 import { Entity, PrimaryColumn, Column, ManyToMany, JoinTable, Index } from 'typeorm';
+import { floor } from 'lodash'
 import { Chat } from './Chat';
 
 @Entity()
@@ -50,7 +51,8 @@ export class User {
 	}
 
 	getVotePoint() {
-		return 1 + (Math.floor((this.karma * 10)/100)) / 10;
+		const point = 1 + floor(this.karma / 10, 1);
+		return point > 0 ? point : 0.1;
 	}
 
 }
