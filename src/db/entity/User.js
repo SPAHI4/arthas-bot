@@ -49,4 +49,8 @@ export class User {
 		return `<a href="tg://user?id=${this.id}">${this.getName()}</a>`;
 	}
 
+	getVotePoint() {
+		return 1 + (Math.floor((this.karma * 10)/100)) / 10;
+	}
+
 }

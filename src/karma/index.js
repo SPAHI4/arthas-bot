@@ -9,7 +9,7 @@ const IS_PROD = process.env.NODE_ENV === 'production';
 
 export const PLUS_TRIGGERS = [ '+', 'СПС', 'ДЯКУЮ', 'ОРУ', 'LUL', 'ПЛЮС', '👍', 'ТУПА ЛИКЕ', 'ТУТ СЫГЛЫ', 'ТУТ СЫГЛЫ+++', 'КЛЕВЫЙ НИК', 'СПРАВЕДЛИВО', 'СОГЛЫ' ];
 export const MINUS_TRIGGERS = [ '-', 'МИНУС', 'СОСИ', 'ДЕБИЛ', 'ДИНАХ', '👎', 'САСАТ', 'ДЕБИК' ];
-export const KARMA_POMOIKA = -10;
+export const KARMA_POMOIKA = -20;
 export const VOTE_COOLDOWN = 5;
 
 
@@ -26,7 +26,7 @@ const karmaPlusImpl = async (ctx) => {
 	}
 
 	if (userFrom.karma < KARMA_POMOIKA) {
-		return replyWithHTMLQuote(`карма меньше ${KARMA_POMOIKA}... земля тебе пухом, братишка`);
+		return replyWithHTMLQuote(`баланс рофлов меньше ${KARMA_POMOIKA}... земля тебе пухом, братишка`);
 	}
 
 	const oldKarma = userTo.karma;
@@ -65,7 +65,7 @@ const karmaMinusImpl = async ctx => {
 	}
 
 	if (userFrom.karma < KARMA_POMOIKA) {
-		return replyWithHTMLQuote(`карма меньше ${KARMA_POMOIKA}... земля тебе пухом, братишка`);
+		return replyWithHTMLQuote(`баланс ${KARMA_POMOIKA}... лежать + лежать`);
 	}
 
 	if (!random(0, 5)) {
