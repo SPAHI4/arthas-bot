@@ -31,7 +31,7 @@ const karmaPlusImpl = async (ctx) => {
 
 	const oldKarma = userTo.karma;
 	userFrom.lastVote = new Date();
-	userTo.karma += 1;
+	userTo.karma += userFrom.getVotePoint();
 
 	await userRepository.save([ userTo, userFrom ]);
 
@@ -81,7 +81,7 @@ const karmaMinusImpl = async ctx => {
 	}
 
 	const oldKarma = userTo.karma;
-	userTo.karma -= 1;
+	userTo.karma -= userFrom.getVotePoint();
 
 	userFrom.lastVote = new Date();
 
