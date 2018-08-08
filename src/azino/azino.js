@@ -2,6 +2,7 @@ import { random, sample } from 'lodash';
 import { differenceInMinutes } from 'date-fns';
 import { compose } from 'telegraf';
 import { pluralize } from 'numeralize-ru';
+import commandParts from 'telegraf-command-parts';
 
 import { User } from '../db/entity/User';
 import { esc, limiter, replyOnly, withUser } from '../utils';
@@ -87,7 +88,7 @@ const texts = [
 	],
 ];
 
-const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, userRepository, user }) => {
+const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, userRepository, user, contextState }) => {
 
 	try {
 
@@ -109,6 +110,8 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 			isBusy = false;
 			return replyWithHTMLQuote(`Соре, нужно <b>${REQUIRED_KARMA}</b> ${pluralize(REQUIRED_KARMA, 'рофланкойн', 'рофланкойна', 'рофланкойнов')}, у тебя <b>${user.karma}</b>`);
 		}
+
+		const hasPromocode = contextState?.command?.args === 'ARTHAS';
 
 		user.lastCasino = new Date();
 		await userRepository.save(user);
@@ -132,20 +135,28 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 			}
 
 			if (isWin) {
-				if (!random(0, 10)) {
+				if (!random(0, 8)) {
 					const win = BET * 3;
 					user.karma += win;
-					replyWithHTML(`Ебааать, бонус от Коци! Легчайшие +${win} для ${user.getMention()}! Мое увожение`);
+					replyWithHTML(`Ебааать, бонус от TTR! Легчайшие +${win} для ${user.getMention()}! Мое увожение PogChamp`);
 				} else {
-					const win = BET;
+					let win = BET;
+					if (hasPromocode) win += 0.3;
 					user.karma += win;
 					replyWithHTML(`${winString(win, user.karma)}, ${user.getMention()}`);
 				}
 				await endCallback(user);
 			} else {
-				const lose = BET;
-				user.karma -= lose;
-				replyWithHTML(`${loseString(lose, user.karma)}, ${user.getMention()}`);
+				if (!random(0, 8)) {
+					const lose = BET;
+					user.karma -= lose * 3;
+					replyWithHTML(`Всем привет! Я - Алексей Вильнюсов, и сегодня я научу вас зарабатывать! 
+					Для этого нужен вступительный взнос, и я забираю у вас <b>${lose}</b> ${pluralize(lose, 'сабж', 'сабжа', 'сабжей')}, ${user.getMention()} <b>(${user.karma})</b>`);
+				} else {
+					const lose = BET;
+					user.karma -= lose;
+					replyWithHTML(`${loseString(lose, user.karma)}, ${user.getMention()}`);
+				}
 				await endCallback(user);
 			}
 		}, delay + 2500);
@@ -158,5 +169,6 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 
 export default compose([
 	withUser,
+	commandParts(),
 	casinoImpl,
 ]);

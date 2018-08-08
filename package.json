@@ -36,6 +36,7 @@
     "pg": "^7.4.3",
     "reflect-metadata": "^0.1.12",
     "telegraf": "^3.22.1",
+    "telegraf-command-parts": "^1.0.3",
     "telegraf-ratelimit": "^2.0.0",
     "typeorm": "0.2.7"
   }

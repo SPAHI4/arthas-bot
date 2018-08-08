@@ -2207,7 +2207,7 @@ nested-error-stacks@^1.0.0:
   dependencies:
     inherits "~2.0.1"
 
-node-fetch@^2.0.0:
+node-fetch@^2.0.0, node-fetch@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.2.0.tgz#4ee79bde909262f9775f731e3656d0db55ced5b5"
 
@@ -3077,11 +3077,28 @@ tar@^4:
     safe-buffer "^5.1.2"
     yallist "^3.0.2"
 
+telegraf-command-parts@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/telegraf-command-parts/-/telegraf-command-parts-1.0.3.tgz#d0e078d10ce3f68469b529e5ea3a76e42d5788b3"
+  dependencies:
+    telegraf "^3.1.0"
+
 telegraf-ratelimit@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/telegraf-ratelimit/-/telegraf-ratelimit-2.0.0.tgz#64c72d77913901f92c690cd9078b1f724ef4268a"
   dependencies:
     debug "^3.1.0"
+
+telegraf@^3.1.0:
+  version "3.22.2"
+  resolved "https://registry.yarnpkg.com/telegraf/-/telegraf-3.22.2.tgz#ae8304a853565377867461d001b21619b0190abb"
+  dependencies:
+    "@types/node" "^10.1.2"
+    debug "^3.0.0"
+    node-fetch "^2.2.0"
+    sandwich-stream "^1.0.0"
+    telegram-typings "^3.6.0"
+    typescript "^3.0.1"
 
 telegraf@^3.22.1:
   version "3.22.1"
@@ -3195,6 +3212,10 @@ typeorm@0.2.7:
 typescript@^2.8.3:
   version "2.9.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.9.2.tgz#1cbf61d05d6b96269244eb6a3bce4bd914e0f00c"
+
+typescript@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.0.1.tgz#43738f29585d3a87575520a4b93ab6026ef11fdb"
 
 uid-number@^0.0.6:
   version "0.0.6"
