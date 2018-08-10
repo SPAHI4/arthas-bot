@@ -147,9 +147,9 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 				}
 				await endCallback(user);
 			} else {
-				if (!random(0, 8)) {
-					const lose = BET;
-					user.karma -= lose * 3;
+				if (!random(0, 9)) {
+					const lose = BET * 3;
+					user.karma -= lose;
 					replyWithHTML(`Всем привет! Я - Алексей Вильнюсов, и сегодня я научу вас зарабатывать! 
 					Для этого нужен вступительный взнос, и я забираю у вас <b>${lose}</b> ${pluralize(lose, 'сабж', 'сабжа', 'сабжей')}, ${user.getMention()} <b>(${user.karma})</b>`);
 				} else {

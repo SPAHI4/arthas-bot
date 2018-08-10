@@ -1,6 +1,5 @@
 import { Entity, PrimaryColumn, Column, ManyToMany, JoinTable, Index } from 'typeorm';
-import { floor } from 'lodash'
-import { Chat } from './Chat';
+import { floor } from 'lodash';
 
 @Entity()
 export class User {
