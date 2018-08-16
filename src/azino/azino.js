@@ -146,14 +146,14 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 		});
 
 		setTimeout(async () => {
-			const isWin = random(1, 100) <= 49; // 49%
+			const isWin = random(1, 100) <= 48; // 49%
 			const endCallback = async usr => {
 				await userRepository.save(usr);
 				isBusy = false;
 			}
 
 			if (isWin) {
-				if (!random(0, 8)) {
+				if (!random(0, 7)) {
 					const win = BET * random(2, 4);
 					user.karma += win;
 					replyWithHTML(`Ебааать, бонус от TTR! Легчайшие +${win} для ${user.getMention()}! Мое увожение PogChamp`);
