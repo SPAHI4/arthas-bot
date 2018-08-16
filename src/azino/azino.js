@@ -10,7 +10,7 @@ import { esc, limiter, replyOnly, withUser } from '../utils';
 const IS_PROD = process.env.NODE_ENV === 'production';
 export const CASINO_COOLDOWN = 10;
 const REQUIRED_KARMA = 1;
-const BET = 5;
+const DEFAULT_BET = 5;
 
 let isBusy = false;
 
@@ -111,7 +111,6 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 			return replyWithHTMLQuote(`Соре, нужно <b>${REQUIRED_KARMA}</b> ${pluralize(REQUIRED_KARMA, 'рофланкойн', 'рофланкойна', 'рофланкойнов')}, у тебя <b>${user.karma}</b>`);
 		}
 
-		const hasPromocode = contextState?.command?.args === 'ARTHAS';
 
 		user.lastCasino = new Date();
 		await userRepository.save(user);
@@ -119,6 +118,25 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 		let strings = [ ...sample(texts) ];
 		const [ winString, loseString ] = strings.pop();
 		let delay = 1000;
+
+		const args = contextState?.command?.args;
+
+		let hasPromocode;
+		let BET = DEFAULT_BET;
+		let [USER_BET, PROMOCODE] = args ? args.split(' ') : [];
+		if (PROMOCODE === 'ARTHAS') {
+			hasPromocode = true;
+		}
+		if (USER_BET === 'ARTHAS') {
+			hasPromocode = true;
+		} else if (Number(USER_BET) > 0) {
+			const tBet = Math.round(Number(USER_BET));
+			const maxBet = Math.floor(user.karma * 0.33);
+			if (tBet > maxBet) replyWithHTMLQuote(`Соре, максимальная ставка для тебя: <b>${maxBet}</b>`);
+			else BET = tBet;
+		}
+
+		replyWithHTML(`Такс такс такс... Ставка: <b>${BET}</b>`);
 
 		strings.forEach(string => {
 			setTimeout(() => {
@@ -136,7 +154,7 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 
 			if (isWin) {
 				if (!random(0, 8)) {
-					const win = BET * 3;
+					const win = BET * random(2, 4);
 					user.karma += win;
 					replyWithHTML(`Ебааать, бонус от TTR! Легчайшие +${win} для ${user.getMention()}! Мое увожение PogChamp`);
 				} else {
@@ -148,7 +166,7 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 				await endCallback(user);
 			} else {
 				if (!random(0, 9)) {
-					const lose = BET * 3;
+					const lose = BET * random(2, 4);
 					user.karma -= lose;
 					replyWithHTML(`Всем привет! Я - Алексей Вильнюсов, и сегодня я научу вас зарабатывать! 
 					Для этого нужен вступительный взнос, и я забираю у вас <b>${lose}</b> ${pluralize(lose, 'сабж', 'сабжа', 'сабжей')}, ${user.getMention()} <b>(${user.karma})</b>`);
