@@ -8,7 +8,7 @@ import { User } from '../db/entity/User';
 import { esc, limiter, replyOnly, withUser } from '../utils';
 
 const IS_PROD = process.env.NODE_ENV === 'production';
-export const CASINO_COOLDOWN = 10;
+export const CASINO_COOLDOWN = 20;
 const REQUIRED_KARMA = 1;
 const DEFAULT_BET = 5;
 
