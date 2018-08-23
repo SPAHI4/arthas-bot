@@ -87,5 +87,6 @@ export default {
     "рофланВглориус": "https://dl.dropbox.com/s/foe3t6fro200r0b/roflanVgloruis.mp3",
     "ХЫХЫХЫХЫ": "https://dl.dropbox.com/s/2t971k8y8aqh9vv/papich_hihihi.mp3",
     "САНЯЯЯ": "https://dl.dropbox.com/s/71psz4r6izd5mhe/sanya.mp3",
-    "ВУД Ю ЛАЙК ТУ СТЕНД ОН ИТ": "https://dl.dropbox.com/s/2vmgrwminb6jvbz/would_u_like_to_stand.mp3"
+    "ВУД Ю ЛАЙК ТУ СТЕНД ОН ИТ": "https://dl.dropbox.com/s/d6irt13hitburqj/would_you_like_to_stand.aac",
+    "ВУД Ю ЛАЙК ТУ СТЕНД ОН ИТ?": "https://dl.dropbox.com/s/s4ln3xmu6zdi9k5/would_you_like_to_stand.wav"
 };
