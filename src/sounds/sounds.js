@@ -87,4 +87,5 @@ export default {
     "рофланВглориус": "https://dl.dropbox.com/s/foe3t6fro200r0b/roflanVgloruis.mp3",
     "ХЫХЫХЫХЫ": "https://dl.dropbox.com/s/2t971k8y8aqh9vv/papich_hihihi.mp3",
     "САНЯЯЯ": "https://dl.dropbox.com/s/71psz4r6izd5mhe/sanya.mp3",
+    "ВУД Ю ЛАЙК ТУ СТЕНД ОН ИТ": "https://dl.dropbox.com/s/2vmgrwminb6jvbz/would_u_like_to_stand.mp3"
 };
