@@ -8,7 +8,7 @@ import { User } from '../db/entity/User';
 import { esc, limiter, replyOnly, withUser } from '../utils';
 
 const IS_PROD = process.env.NODE_ENV === 'production';
-export const CASINO_COOLDOWN = 40;
+export const CASINO_COOLDOWN = 60;
 const REQUIRED_KARMA = 1;
 const DEFAULT_BET = 5;
 
@@ -132,11 +132,14 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 		} else if (Number(USER_BET) > 0) {
 			const tBet = Math.round(Number(USER_BET));
 			const maxBet = Math.floor(user.karma * 0.33);
-			if (tBet > maxBet) replyWithHTMLQuote(`Соре, максимальная ставка для тебя: <b>${maxBet}</b>`);
+			if (tBet > maxBet) return replyWithHTMLQuote(`Соре, максимальная ставка для тебя: <b>${maxBet}</b>`);
 			else BET = tBet;
 		}
 
 		replyWithHTML(`Такс такс такс... Ставка: <b>${BET}</b>`);
+
+		// fix to remove multiple messages
+		strings = [strings.join((`\n`))];
 
 		strings.forEach(string => {
 			setTimeout(() => {
