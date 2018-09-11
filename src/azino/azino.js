@@ -132,7 +132,10 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 		} else if (Number(USER_BET) > 0) {
 			const tBet = Math.round(Number(USER_BET));
 			const maxBet = Math.floor(user.karma * 0.33);
-			if (tBet > maxBet) return replyWithHTMLQuote(`Соре, максимальная ставка для тебя: <b>${maxBet}</b>`);
+			if (tBet > maxBet) {
+				isBusy = false;
+				return replyWithHTMLQuote(`Соре, максимальная ставка для тебя: <b>${maxBet}</b>`);
+			}
 			else BET = tBet;
 		}
 
