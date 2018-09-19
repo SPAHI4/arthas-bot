@@ -111,10 +111,6 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 			return replyWithHTMLQuote(`Соре, нужно <b>${REQUIRED_KARMA}</b> ${pluralize(REQUIRED_KARMA, 'рофланкойн', 'рофланкойна', 'рофланкойнов')}, у тебя <b>${user.karma}</b>`);
 		}
 
-
-		user.lastCasino = new Date();
-		await userRepository.save(user);
-
 		let strings = [ ...sample(texts) ];
 		const [ winString, loseString ] = strings.pop();
 		let delay = 1000;
@@ -138,6 +134,10 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 			}
 			else BET = tBet;
 		}
+
+
+		user.lastCasino = new Date();
+		await userRepository.save(user);
 
 		replyWithHTML(`Такс такс такс... Ставка: <b>${BET}</b>`);
 
