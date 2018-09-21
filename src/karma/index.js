@@ -68,7 +68,7 @@ const karmaMinusImpl = async ctx => {
 		return replyWithHTMLQuote(`баланс ${KARMA_POMOIKA}... лежать + лежать`);
 	}
 
-	if (!random(0, 5)) {
+	if (!random(0, 4)) {
 		userTo.karma += 8;
 
 		const oldKarma = userFrom.karma;
