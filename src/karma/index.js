@@ -2,12 +2,11 @@ import { sample, random } from 'lodash';
 import { compose } from 'telegraf';
 import { differenceInMinutes } from 'date-fns';
 
-import { User } from '../db/entity/User';
-import { esc, limiter, replyOnly, withReplyUser, withUser } from '../utils';
+import { limiter, replyOnly, withReplyUser, withUser } from '../utils';
 
 const IS_PROD = process.env.NODE_ENV === 'production';
 
-export const PLUS_TRIGGERS = [ '+', 'СПС', 'ДЯКУЮ', 'ОРУ', 'LUL', 'ПЛЮС', '👍', 'ТУПА ЛИКЕ', 'ТУТ СЫГЛЫ', 'ТУТ СЫГЛЫ+++', 'КЛЕВЫЙ НИК', 'СПРАВЕДЛИВО', 'СОГЛЫ', 'СОЛИДАРЕН' ];
+export const PLUS_TRIGGERS = [ '+', 'СПС', 'ДЯКУЮ', 'ОРУ', 'LUL', 'ПЛЮС', '👍', 'ТУПА ЛИКЕ', 'ТУТ СЫГЛЫ', 'ТУТ СЫГЛЫ+++', 'КЛЕВЫЙ НИК', 'СПРАВЕДЛИВО', 'СОГЛЫ', 'СОЛИДАРЕН', 'roflanOru' ];
 export const MINUS_TRIGGERS = [ '-', 'МИНУС', 'СОСИ', 'ДЕБИЛ', 'ДИНАХ', '👎', 'САСАТ', 'ДЕБИК' ];
 export const KARMA_POMOIKA = -20;
 export const VOTE_COOLDOWN = 5;
@@ -52,7 +51,7 @@ export const karmaPlus = compose([
 
 
 const karmaMinusImpl = async ctx => {
-	const { message, replyWithHTML, replyWithHTMLQuote, userRepository } = ctx;
+	const { replyWithHTML, replyWithHTMLQuote, userRepository } = ctx;
 	let userTo = ctx.replyUser;
 	let userFrom = ctx.user;
 
