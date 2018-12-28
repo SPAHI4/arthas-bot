@@ -1,6 +1,7 @@
 import Telegraf from 'telegraf';
 import 'reflect-metadata';
 import env from 'env-var';
+import { sample } from 'lodash';
 
 import commandInline from './sounds/inline'
 import soundsList from './sounds/soundsList'
@@ -56,10 +57,10 @@ app.telegram.getMe().then((botInfo) => {
 	app.options.username = botInfo.username;
 
 	app.mention(botInfo.username, ctx => {
-		ctx.reply([
+		return ctx.replyWithHTMLQuote(sample([
 			`нахуя ты это высрал`,
 			`держи в курсе`,
-		])
+		]))
 	})
 });
 
