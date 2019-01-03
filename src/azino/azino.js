@@ -1,5 +1,5 @@
 import { random, sample } from 'lodash';
-import { differenceInMinutes } from 'date-fns';
+import { differenceInMinutes, addHours } from 'date-fns';
 import { compose } from 'telegraf';
 import { pluralize } from 'numeralize-ru';
 import commandParts from 'telegraf-command-parts';
@@ -120,10 +120,10 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 		let hasPromocode;
 		let BET = DEFAULT_BET;
 		let [USER_BET, PROMOCODE] = args ? args.split(' ') : [];
-		if (PROMOCODE === 'ARTHAS') {
+		if (PROMOCODE === 'NEWYEAR') {
 			hasPromocode = true;
 		}
-		if (USER_BET === 'ARTHAS') {
+		if (USER_BET === 'NEWYEAR') {
 			hasPromocode = true;
 		} else if (Number(USER_BET) > 0) {
 			const tBet = Math.round(Number(USER_BET));
@@ -136,7 +136,7 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 		}
 
 
-		user.lastCasino = new Date();
+		user.lastCasino = addHours(new Date(), 1);
 		await userRepository.save(user);
 
 		replyWithHTML(`Такс такс такс... Ставка: <b>${BET}</b>`);
@@ -165,7 +165,9 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 					replyWithHTML(`Ебааать, бонус от TTR! Легчайшие +${win} для ${user.getMention()}! Мое увожение PogChamp`);
 				} else {
 					let win = BET;
-					if (hasPromocode) win += 0.3;
+					if (hasPromocode) {
+						win += 100;
+					}
 					user.karma += win;
 					replyWithHTML(`${winString(win, user.karma)}, ${user.getMention()}`);
 				}
