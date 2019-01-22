@@ -162,7 +162,13 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 				if (!random(0, 7)) {
 					const win = BET * random(2, 4);
 					user.karma += win;
-					replyWithHTML(`Ебааать, бонус от TTR! Легчайшие +${win} для ${user.getMention()}! Мое увожение PogChamp`);
+					replyWithHTML(sample([
+						`Ебааать, бонус от TTR! Легчайшие +${win} для ${user.getMention()}! Мое увожение PogChamp`,
+						`Вы получаете грант от США
+						 +${win} для ${user.getMention()}! roflanTsar`,
+						`Я СНОВА ЖИВУ! 
+						 +${win} для ${user.getMention()}! roflanZdarova`,
+					]));
 				} else {
 					let win = BET;
 					if (hasPromocode) {
@@ -176,8 +182,13 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 				if (!random(0, 9)) {
 					const lose = BET * random(2, 4);
 					user.karma -= lose;
-					replyWithHTML(`Всем привет! Я - Алексей Вильнюсов, и сегодня я научу вас зарабатывать! 
-					Для этого нужен вступительный взнос, и я забираю у вас <b>${lose}</b> ${pluralize(lose, 'сабж', 'сабжа', 'сабжей')}, ${user.getMention()} <b>(${user.karma})</b>`);
+					replyWithHTML(sample([`Всем привет! Я - Алексей Вильнюсов, и сегодня я научу вас зарабатывать! 
+					Для этого нужен вступительный взнос, и я забираю у вас <b>${lose}</b> ${pluralize(lose, 'сабж', 'сабжа', 'сабжей')}, ${user.getMention()} <b>(${user.karma})</b>`,
+						`Привет! Это Навальный! Ваш донат для ФБК успешно принят!
+					Спасибо за <b>${lose}</b> ${pluralize(lose, 'сабж', 'сабжа', 'сабжей')}, ${user.getMention()} <b>(${user.karma})</b>`,
+						`Кхе-кхе, доброго времени суток! Хочешь как на Украине? Тогда плоти нолог!
+					Я забираю у тебя <b>${lose}</b> ${pluralize(lose, 'сабж', 'сабжа', 'сабжей')}, ${user.getMention()} <b>(${user.karma})</b>`,
+					]));
 				} else {
 					const lose = BET;
 					user.karma -= lose;
