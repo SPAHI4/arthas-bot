@@ -55,4 +55,8 @@ export class User {
 		return point > 0 ? point : 0.1;
 	}
 
+	get karma() {
+		return this.karma != null ? this.karma.toFixed(2) : 0;
+	}
+
 }
