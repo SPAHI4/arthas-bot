@@ -1,12 +1,13 @@
 import { sample, random } from 'lodash';
 import { compose } from 'telegraf';
 import { differenceInMinutes } from 'date-fns';
-import { PLUS_TRIGGERS, MINUS_TRIGGERS } from './triggers'
 
 import { limiter, replyOnly, withReplyUser, withUser } from '../utils';
 
 const IS_PROD = process.env.NODE_ENV === 'production';
 
+export const PLUS_TRIGGERS = [ '+', 'СПС', 'ДЯКУЮ', 'ОРУ', 'LUL', 'ПЛЮС', '👍', 'ТУПА ЛИКЕ', 'ТУТ СЫГЛЫ', 'ТУТ СЫГЛЫ+++', 'КЛЕВЫЙ НИК', 'СПРАВЕДЛИВО', 'СОГЛЫ', 'СОЛИДАРЕН', 'roflanOru', 'ИЗВЕНИ', 'ИЗВИНИ' ];
+export const MINUS_TRIGGERS = [ '-', 'МИНУС', 'СОСИ', 'ДЕБИЛ', 'ДИНАХ', '👎', 'САСАТ', 'ДЕБИК' ];
 export const KARMA_POMOIKA = -20;
 export const VOTE_COOLDOWN = 5;
 
