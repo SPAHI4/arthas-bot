@@ -1,13 +1,12 @@
 import { sample, random } from 'lodash';
 import { compose } from 'telegraf';
 import { differenceInMinutes } from 'date-fns';
+import { PLUS_TRIGGERS, MINUS_TRIGGERS } from './triggers'
 
 import { limiter, replyOnly, withReplyUser, withUser } from '../utils';
 
 const IS_PROD = process.env.NODE_ENV === 'production';
 
-export const PLUS_TRIGGERS = [ '+', 'СПС', 'ДЯКУЮ', 'ОРУ', 'LUL', 'ПЛЮС', '👍', 'ТУПА ЛИКЕ', 'ТУТ СЫГЛЫ', 'ТУТ СЫГЛЫ+++', 'КЛЕВЫЙ НИК', 'СПРАВЕДЛИВО', 'СОГЛЫ', 'СОЛИДАРЕН', 'roflanOru', 'ИЗВЕНИ', 'ИЗВИНИ' ];
-export const MINUS_TRIGGERS = [ '-', 'МИНУС', 'СОСИ', 'ДЕБИЛ', 'ДИНАХ', '👎', 'САСАТ', 'ДЕБИК' ];
 export const KARMA_POMOIKA = -20;
 export const VOTE_COOLDOWN = 5;
 
@@ -68,16 +67,17 @@ const karmaMinusImpl = async ctx => {
 	}
 
 
-	if (!random(0, 4)) {
-		userTo.karma += 8;
-
-		const oldKarma = userFrom.karma;
+	if (!random(0, 9)) {
+		const oldUserFromKarma = userFrom.karma;
+		const oldUserToKarma = userTo.karma;
+		
+		userTo.karma += userFrom.getVotePoint();
 		userFrom.karma -= Math.max(Math.floor(userFrom.karma / 5), 5);
 		userFrom.lastVote = new Date();
 
 		await userRepository.save([ userTo, userFrom ]);
 
-		return replyWithHTML(`гуччи линзы <i>${userTo.getName()}</i> отразили хейт <i>${userFrom.getName()}</i> (${oldKarma} → <b>${userFrom.karma}</b>)`);
+		return replyWithHTML(`гуччи линзы <i>${userTo.getName()}</i> (${oldUserToKarma} → <b>${userTo.karma}</b>) отразили хейт <i>${userFrom.getName()}</i> (${oldUserFromKarma} → <b>${userFrom.karma}</b>)`);
 	}
 
 	const oldKarma = userTo.karma;

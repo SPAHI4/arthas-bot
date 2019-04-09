@@ -9,7 +9,8 @@ import selfGreeting from './greeting/selfGreeting';
 import userGreeting from './greeting/userGreeting';
 import otvetochka from './greeting/otvetochka';
 import azino from './azino/azino';
-import { karmaMinus, karmaPlus, MINUS_TRIGGERS, PLUS_TRIGGERS, topLaddera } from './karma/index';
+import { karmaMinus, karmaPlus, topLaddera } from './karma/index';
+import { PLUS_TRIGGERS, MINUS_TRIGGERS } from './karma/triggers'
 import { limiter, getName, withUser, withReplyUser, replyOnly, extra } from './utils';
 import { connectionMiddleware, getConnection } from './db/connection';
 
