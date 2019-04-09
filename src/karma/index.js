@@ -68,11 +68,10 @@ const karmaMinusImpl = async ctx => {
 
 
 	if (!random(0, 9)) {
-		const diff = Math.max(Math.floor(userFrom.karma / 5), 5);
 		const oldKarma = userFrom.karma;
 		
-		userTo.karma += diff;
-		userFrom.karma -= diff;
+		userTo.karma += Math.max(Math.floor(userTo.karma / 5), 5);
+		userFrom.karma -= Math.max(Math.floor(userFrom.karma / 5), 5);
 		userFrom.lastVote = new Date();
 
 		await userRepository.save([ userTo, userFrom ]);
