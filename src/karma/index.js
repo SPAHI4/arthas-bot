@@ -70,7 +70,7 @@ const karmaMinusImpl = async ctx => {
 	if (!random(0, 9)) {
 		const oldKarma = userFrom.karma;
 		
-		userTo.karma += Math.max(Math.floor(userTo.karma / 5), 5);
+		userTo.karma += userFrom.getVotePoint();
 		userFrom.karma -= Math.max(Math.floor(userFrom.karma / 5), 5);
 		userFrom.lastVote = new Date();
 
