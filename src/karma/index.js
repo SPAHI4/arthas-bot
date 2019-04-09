@@ -67,7 +67,7 @@ const karmaMinusImpl = async ctx => {
 	}
 
 
-	if (!random(0, 7)) {
+	if (!random(0, 9)) {
 		const diff = Math.max(Math.floor(userFrom.karma / 5), 5);
 		const oldKarma = userFrom.karma;
 		
