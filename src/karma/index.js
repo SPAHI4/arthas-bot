@@ -68,7 +68,8 @@ const karmaMinusImpl = async ctx => {
 
 
 	if (!random(0, 9)) {
-		const oldKarma = userFrom.karma;
+		const oldUserFromKarma = userFrom.karma;
+		const oldUserToKarma = userTo.karma;
 		
 		userTo.karma += userFrom.getVotePoint();
 		userFrom.karma -= Math.max(Math.floor(userFrom.karma / 5), 5);
@@ -76,7 +77,7 @@ const karmaMinusImpl = async ctx => {
 
 		await userRepository.save([ userTo, userFrom ]);
 
-		return replyWithHTML(`гуччи линзы <i>${userTo.getName()}</i> отразили хейт <i>${userFrom.getName()}</i> (${oldKarma} → <b>${userFrom.karma}</b>)`);
+		return replyWithHTML(`гуччи линзы <i>${userTo.getName()}</i> (${oldUserToKarma} → <b>${userTo.karma}</b>) отразили хейт <i>${userFrom.getName()}</i> (${oldUserFromKarma} → <b>${userFrom.karma}</b>)`);
 	}
 
 	const oldKarma = userTo.karma;
