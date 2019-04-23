@@ -25,6 +25,10 @@ export const PLUS_TRIGGERS = [
   'СОГЛАСЕН',
   'ПЛЮС',
   'ПОДТВЕРЖДАЮ',
+  'SPS',
+  'TY',
+  'THX',
+  'ЯСНО ОЛД',
 ];
 export const MINUS_TRIGGERS = [
   '-',
@@ -48,4 +52,7 @@ export const MINUS_TRIGGERS = [
   'МРАКОБЕС',
   'ЕБЛАН',
   'АВТОР ЕБЛАН',
+  'ЯСНО ХУЕТА',
+  'ЯСНО КУКОЛД',
+  'РАССКАЖЕШЬ',
 ];
