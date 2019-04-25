@@ -1,7 +1,8 @@
 import { sample, random } from 'lodash';
 import { compose } from 'telegraf';
 import { differenceInMinutes } from 'date-fns';
-import { PLUS_TRIGGERS, MINUS_TRIGGERS } from './triggers'
+import { PLUS_TRIGGERS, MINUS_TRIGGERS } from './triggers';
+import { pluralize } from 'numeralize-ru';
 
 import { limiter, replyOnly, withReplyUser, withUser } from '../utils';
 
@@ -16,11 +17,15 @@ const karmaPlusImpl = async (ctx) => {
 	let userTo = ctx.replyUser;
 	let userFrom = ctx.user;
 
-	if (IS_PROD && userFrom.lastVote && differenceInMinutes(new Date(), userFrom.lastVote) < VOTE_COOLDOWN) {
+	const timeDiff = differenceInMinutes(new Date(), userFrom.lastVote);
+
+	if (IS_PROD && userFrom.lastVote && timeDiff < VOTE_COOLDOWN) {
+		const timeLeft = (VOTE_COOLDOWN - timeDiff) || 1;
+		const timeoutMessage = ` ОСТАЛОСЬ ${timeLeft} ${pluralize(timeLeft, 'МИНУТУ', 'МИНУТЫ', 'МИНУТ')}`;
 		return replyWithHTMLQuote(sample([
 			`НОТ РЕДИ`,
 			`НОТ ЭНАФ МАНА`,
-		]));
+		]) + timeoutMessage);
 	}
 
 	if (userFrom.karma < KARMA_POMOIKA) {
@@ -52,14 +57,18 @@ export const karmaPlus = compose([
 const karmaMinusImpl = async ctx => {
 	const { replyWithHTML, replyWithHTMLQuote, userRepository } = ctx;
 	let userTo = ctx.replyUser;
-	let userFrom = ctx.user;
+	let userFrom = ctx.user
 
-	if (IS_PROD && userFrom.lastVote && differenceInMinutes(new Date(), userFrom.lastVote) < VOTE_COOLDOWN) {
+	const timeDiff = differenceInMinutes(new Date(), userFrom.lastVote);
+
+	if (IS_PROD && userFrom.lastVote && timeDiff < VOTE_COOLDOWN) {
+		const timeLeft = (VOTE_COOLDOWN - timeDiff) || 1;
+		const timeoutMessage = ` ОСТАЛОСЬ ${timeLeft} ${pluralize(timeLeft, 'МИНУТУ', 'МИНУТЫ', 'МИНУТ')}`;
 		return replyWithHTMLQuote(sample([
 			`НОТ РЕДИ`,
 			`НОТ ЭНАФ МАНА`,
 			`ЗЭТ ВОЗ ЭН ЭРРОР`,
-		]));
+		]) + timeoutMessage);
 	}
 
 	if (userFrom.karma < KARMA_POMOIKA) {
