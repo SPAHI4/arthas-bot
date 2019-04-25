@@ -135,7 +135,7 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 				isBusy = false;
 				return replyWithHTMLQuote(`Соре, максимальная ставка для тебя: <b>${maxBet}</b>`);
 			}
-			else BET = tBet;
+			else BET = tBet || DEFAULT_BET;
 		}
 
 
