@@ -21,7 +21,7 @@ const karmaPlusImpl = async (ctx) => {
 
 	if (IS_PROD && userFrom.lastVote && timeDiff < VOTE_COOLDOWN) {
 		const timeLeft = (VOTE_COOLDOWN - timeDiff) || 1;
-		const timeoutMessage = `, ОСТАЛОСЬ ${timeLeft} ${pluralize(timeLeft, 'МИНУТУ', 'МИНУТЫ', 'МИНУТ')}`;
+		const timeoutMessage = `, ОСТАЛОСЬ ЖДАТЬ ${timeLeft} ${pluralize(timeLeft, 'МИНУТУ', 'МИНУТЫ', 'МИНУТ')}`;
 		return replyWithHTMLQuote(sample([
 			`НОТ РЕДИ`,
 			`НОТ ЭНАФ МАНА`,
@@ -63,7 +63,7 @@ const karmaMinusImpl = async ctx => {
 
 	if (IS_PROD && userFrom.lastVote && timeDiff < VOTE_COOLDOWN) {
 		const timeLeft = (VOTE_COOLDOWN - timeDiff) || 1;
-		const timeoutMessage = `, ОСТАЛОСЬ ${timeLeft} ${pluralize(timeLeft, 'МИНУТУ', 'МИНУТЫ', 'МИНУТ')}`;
+		const timeoutMessage = `, ОСТАЛОСЬ ЖДАТЬ ${timeLeft} ${pluralize(timeLeft, 'МИНУТУ', 'МИНУТЫ', 'МИНУТ')}`;
 		return replyWithHTMLQuote(sample([
 			`НОТ РЕДИ`,
 			`НОТ ЭНАФ МАНА`,
