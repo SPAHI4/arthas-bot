@@ -58,7 +58,7 @@ export const karmaPlus = compose([
 const karmaMinusImpl = async ctx => {
 	const { replyWithHTML, replyWithHTMLQuote, userRepository } = ctx;
 	let userTo = ctx.replyUser;
-	let userFrom = ctx.user
+	let userFrom = ctx.user;
 
 	const timeDiff = differenceInMinutes(new Date(), userFrom.lastVote);
 
@@ -128,20 +128,28 @@ const getIcon = i => {
 }
 
 export const topLaddera = async ctx => {
-	let top = await ctx.userRepository
+	const users = await ctx.userRepository
 		.createQueryBuilder('user')
 		.where('user.chatId = :chatId', { chatId: ctx.message.chat.id })
 		.orderBy('user.karma', 'DESC')
 		// .setLimit(10)
 		.getMany();
 
-	top = top.map((user, i) => `${getIcon(i + 1)} ${user.getName()} (<b>${user.karma || 0}</b>)`);
+	const getUserString = (user, i) => `${getIcon(i + 1)} ${ctx.from.id === user.id ? `<b>user.getName()</b>` : user.getName()} (<b>${user.karma || 0}</b>)`;
+	let top = users.map(getUserString);
 
-	let display = top.slice(0, 5);
-	if (top.length) {
-		display.push('\n...\n\n Херальды 🤢');
-		display.push(...top.slice(-3));
+	let content = top.slice(0, 5);
+	const displayedUsers = [...top.slice(0, 5), ...top.slice(-3)];
+	if (!displayedUsers.some(user => user.id === ctx.from.id)) {
+		const userIndex = users.findIndex(user => user.id === ctx.from.id);
+		content.push('\n...\n');
+		content.push(getUserString(users[userIndex], userIndex));
 	}
 
-	return ctx.replyWithHTML(`Топ-3 ладдера по версии этого чятика:\n\n Имморталы 😎 \n${display.join('\n')}`);
+	if (top.length) {
+		content.push('\n\n...\n\n Херальды 🤢');
+		content.push(...top.slice(-3));
+	}
+
+	return ctx.replyWithHTML(`Топ-3 ладдера по версии этого чятика:\n\n Имморталы 😎 \n${content.join('\n')}`);
 };
