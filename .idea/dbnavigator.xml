@@ -27,18 +27,21 @@
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="104c97be-d8ab-4c24-a725-858abbaa2979">
-      <console name="Connection" type="STANDARD" />
+      <console name="Connection" type="STANDARD" schema="" session="Main" />
     </connection>
+  </component>
+  <component name="DBNavigator.Project.DatabaseFileManager">
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="104c97be-d8ab-4c24-a725-858abbaa2979" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-list connection-id="104c97be-d8ab-4c24-a725-858abbaa2979" dataset="public.user" active-filter-id="EMPTY_FILTER">
+    <filter-actions connection-id="104c97be-d8ab-4c24-a725-858abbaa2979" dataset="public.user" active-filter-id="EMPTY_FILTER">
       <filter id="a40ce1fc-a56f-4232-a37a-8bf1941e02a7" name="Filter" temporary="false" custom-name="false" type="basic" join-type="AND">
         <condition column="username" operator="is not null" value="" active="true" />
       </filter>
-    </filter-list>
+    </filter-actions>
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -78,9 +81,9 @@
           <port value="5432" />
           <database value="arthasbot" />
           <os-authentication value="true" />
-          <empty-password value="false" />
+          <empty-authentication value="false" />
           <user value="" />
-          <password value="" />
+          <deprecated-pwd value="" />
         </database>
         <properties>
           <auto-commit value="false" />
@@ -90,11 +93,17 @@
           <proxy-host value="" />
           <proxy-port value="22" />
           <proxy-user value="" />
-          <proxy-password value="" />
+          <deprecated-proxy-pwd value="" />
           <auth-type value="PASSWORD" />
           <key-file value="" />
           <key-passphrase value="" />
         </ssh-settings>
+        <ssl-settings>
+          <active value="false" />
+          <certificate-authority-file value="" />
+          <client-certificate-file value="" />
+          <client-key-file value="" />
+        </ssl-settings>
         <details>
           <charset value="UTF-8" />
           <session-management value="true" />
@@ -106,7 +115,7 @@
           <environment-type value="default" />
           <idle-time-to-disconnect value="30" />
           <idle-time-to-disconnect-pool value="5" />
-          <password-expiry-time value="10" />
+          <credential-expiry-time value="10" />
           <max-connection-pool-size value="7" />
           <alternative-statement-delimiter value="" />
         </details>
@@ -245,11 +254,11 @@
         <data-length-threshold value="100" />
         <popup-delay value="1000" />
       </text-editor-popup>
-      <values-list-popup>
+      <values-actions-popup>
         <show-popup-button value="true" />
         <element-count-threshold value="1000" />
         <data-length-threshold value="250" />
-      </values-list-popup>
+      </values-actions-popup>
       <general>
         <fetch-block-size value="100" />
         <fetch-timeout value="30" />
