@@ -143,13 +143,13 @@ export const topLaddera = async ctx => {
 	if (!displayedUsers.some(user => String(user.id) === String(ctx.message.from.id))) {
 		const userIndex = users.findIndex(user => String(user.id) === String(ctx.message.from.id));
 		if (userIndex !== -1) {
-			content.push('\n...\n');
+			content.push('...\n');
 			content.push(getUserString(users[userIndex], userIndex));
 		}
 	}
 
 	if (top.length) {
-		content.push('\n...\n\n Херальды 🤢');
+		content.push('...\n\n Херальды 🤢');
 		content.push(...top.slice(-3));
 	}
 
