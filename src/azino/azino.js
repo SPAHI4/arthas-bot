@@ -125,9 +125,10 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 		}
 		if (USER_BET === 'ARTHAS') {
 			hasPromocode = true;
-		} else if (Number(USER_BET) > 0) {
-			const tBet = Math.round(Number(USER_BET));
+		} else {
 			const maxBet = Math.floor(user.karma * 0.33);
+			const tBet = ['все', 'all', 'вабанк', 'vabank', 'max', 'макс'].includes(USER_BET) ? maxBet : Math.abs(Math.round(Number(USER_BET)));
+
 			if (tBet > maxBet) {
 				isBusy = false;
 				return replyWithHTMLQuote(`Соре, максимальная ставка для тебя: <b>${maxBet}</b>`);
