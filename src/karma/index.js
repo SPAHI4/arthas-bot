@@ -139,7 +139,7 @@ export const topLaddera = async ctx => {
 	let top = users.map(getUserString);
 
 	let content = top.slice(0, 5);
-	const displayedUsers = [...top.slice(0, 5), ...top.slice(-3)];
+	const displayedUsers = [...users.slice(0, 5), ...users.slice(-3)];
 	if (!displayedUsers.some(user => user.id === ctx.from.id)) {
 		const userIndex = users.findIndex(user => user.id === ctx.from.id);
 		content.push('\n...\n');
