@@ -128,6 +128,7 @@ const getIcon = i => {
 }
 
 export const topLaddera = async ctx => {
+	const topCount = 5;
 	const users = await ctx.userRepository
 		.createQueryBuilder('user')
 		.where('user.chatId = :chatId', { chatId: ctx.message.chat.id })
@@ -138,18 +139,18 @@ export const topLaddera = async ctx => {
 	const getUserString = (user, i) => `${getIcon(i + 1)} ${String(ctx.message.from.id) === String(user.id) ? `<b>${user.getName()}</b>` : user.getName()} (<b>${user.karma || 0}</b>)`;
 	let top = users.map(getUserString);
 
-	let content = top.slice(0, 5);
-	const displayedUsers = [...users.slice(0, 5), ...users.slice(-3)];
+	let content = top.slice(0, topCount);
+	const displayedUsers = [...users.slice(0, topCount), ...users.slice(-3)];
 	if (!displayedUsers.some(user => String(user.id) === String(ctx.message.from.id))) {
 		const userIndex = users.findIndex(user => String(user.id) === String(ctx.message.from.id));
 		if (userIndex !== -1) {
-			content.push('...\n');
+			userIndex > topCount && content.push('...\n');
 			content.push(getUserString(users[userIndex], userIndex));
 		}
 	}
 
 	if (top.length) {
-		content.push('...\n\n Херальды 🤢');
+		content.push('...\n Херальды 🤢');
 		content.push(...top.slice(-3));
 	}
 
