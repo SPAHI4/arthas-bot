@@ -26,9 +26,9 @@ const texts = [
 Какой?`,
 		`Играть онлайн!`,
 		[
-			(win, all) => `Ебать, изи <b>+${win}</b>! На лакерычах.
+			(win, all) => formatFloats`Ебать, изи <b>+${win}</b>! На лакерычах.
  Теперь у тебя ${all} ${pluralize(all, 'рофланиум', 'рофланиума', 'рофланиумов')}`,
-			(lose, all) => `Не вкачал талант, даун, <b>-${lose}</b>!
+			(lose, all) => formatFloats`Не вкачал талант, даун, <b>-${lose}</b>!
  Теперь у тебя <b>${all}</b> ${pluralize(all, 'рофланиум', 'рофланиума', 'рофланиумов')}`,
 		],
 	],
@@ -41,12 +41,12 @@ const texts = [
 		`Поймал удачу и
 Держу за оба крыла`,
 		[
-			(win, all) => `ДА ПОЧЕМУУУ БЛЯТЬ!
+			(win, all) => formatFloats`ДА ПОЧЕМУУУ БЛЯТЬ!
 
  <b>+${win}</b>!
  
  Теперь у тебя ${all} ${pluralize(all, 'рофлик', 'рофлика', 'рофликов')}`,
-			(lose, all) => `Поймал, проверяй,  Изи сабжи для величайшего (меня). <b>-${lose}</b>!
+			(lose, all) => formatFloats`Поймал, проверяй,  Изи сабжи для величайшего (меня). <b>-${lose}</b>!
  У тебя осталось <b>${all}</b> ${pluralize(all, 'рофлик', 'рофлика', 'рофликов')}`,
 		],
 	],
@@ -57,12 +57,12 @@ const texts = [
 		`Если поднял
 Отгрузят бабла`,
 		[
-			(win, all) => `АЙСФРАУД ГДЕ БАЛАНС?
+			(win, all) => formatFloats`АЙСФРАУД ГДЕ БАЛАНС?
 
  <b>+${win}</b>!
  
  Теперь у тебя ${all} ${pluralize(all, 'рофланкойн', 'рофланкойна', 'рофланкойнов')}`,
-			(lose, all) => `(нет)
+			(lose, all) => formatFloats`(нет)
 
  минус <b>${lose}</b>, земля тебе пухом
  
@@ -75,9 +75,9 @@ const texts = [
 		'...',
 		'ШЕСТЬ!',
 		[
-			(win, all) => `ВЫ ВЫИГРАЛИ! <b>+${win}</b>!
+			(win, all) => formatFloats`ВЫ ВЫИГРАЛИ! <b>+${win}</b>!
  Теперь у тебя ${all} ${pluralize(all, 'сабж', 'сабжа', 'сабжей')}`,
-			(lose, all) => `ТАЗАШО
+			(lose, all) => formatFloats`ТАЗАШО
 
 -стрим
 
@@ -110,7 +110,7 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 
 		if (REQUIRED_KARMA > user.karma) {
 			isBusy = false;
-			return replyWithHTMLQuote(`Соре, нужно <b>${REQUIRED_KARMA}</b> ${pluralize(REQUIRED_KARMA, 'рофланкойн', 'рофланкойна', 'рофланкойнов')}, у тебя <b>${user.karma}</b>`);
+			return replyWithHTMLQuote(formatFloats`Соре, нужно <b>${REQUIRED_KARMA}</b> ${pluralize(REQUIRED_KARMA, 'рофланкойн', 'рофланкойна', 'рофланкойнов')}, у тебя <b>${user.karma}</b>`);
 		}
 
 		let strings = [ ...sample(texts) ];
@@ -133,7 +133,7 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 
 			if (tBet > maxBet) {
 				isBusy = false;
-				return replyWithHTMLQuote(`Соре, максимальная ставка для тебя: <b>${maxBet}</b>`);
+				return replyWithHTMLQuote(formatFloats`Соре, максимальная ставка для тебя: <b>${maxBet}</b>`);
 			}
 			else BET = tBet || DEFAULT_BET;
 		}
