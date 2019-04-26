@@ -101,7 +101,7 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 		if (IS_PROD && user.lastCasino && differenceInMinutes(new Date(), user.lastCasino) < CASINO_COOLDOWN) {
 			isBusy = false;
 			const timeDiff = CASINO_COOLDOWN - differenceInMinutes(new Date(), user.lastCasino);
-			const waitingTime = `ПРИХОДИ ЧЕРЕЗ ${timeDiff} ${pluralize(timeDiff, 'МИНУТУ', 'МИНУТЫ', 'МИНУТ')}`;
+			const waitingTime = `\n ⏳ жди ${timeDiff} ${pluralize(timeDiff, 'минуту', 'минуты', 'минут')}`;
 			return replyWithHTMLQuote(sample([
 				`АВТИКИ ПОКА ЗАКРЫТЫ ДЛЯ ТЕБЯ, ${waitingTime}`,
 				`НОТ ЭНАФ МАНА, ${waitingTime}`,
