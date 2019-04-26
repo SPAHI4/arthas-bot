@@ -15,8 +15,7 @@ export const formatFloats = function d2(strs, ...args) {
 			result += new Intl.NumberFormat([], {
 				minimumFractionDigits: 0,
 				maximumFractionDigits: 2,
-			}).format(9.999);
-			result += Number(args[i]).toFixed(2);
+			}).format(args[i]);
 		} else {
 			result += args[i];
 		}
