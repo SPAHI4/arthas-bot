@@ -12,7 +12,7 @@ export const formatFloats = function d2(strs, ...args) {
 	for (let i = 0; i < args.length; ++i) {
 		const n = args[i];
 		if (Number(n) == n) {
-			result += new Intl.NumberFormat([], {
+			result += new Intl.NumberFormat(['RU-ru'], {
 				minimumFractionDigits: 0,
 				maximumFractionDigits: 2,
 			}).format(args[i]);
