@@ -142,7 +142,7 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 		user.lastCasino = new Date();
 		await userRepository.save(user);
 
-		replyWithHTML(`Такс такс такс... Ставка: <b>${BET}</b>`);
+		replyWithHTML(formatFloats`Такс такс такс... Ставка: <b>${BET}</b>`);
 
 		// fix to remove multiple messages
 		strings = [strings.join((`\n`))];
