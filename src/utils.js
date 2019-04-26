@@ -7,8 +7,22 @@ const IS_PROD = process.env.NODE_ENV === 'production';
 
 const BOT_ID = BOT_TOKEN.split(':')[ 0 ];
 
-export const isMe = (user) => Number(user.id) === Number(BOT_ID);
+export const formatFloats = function d2(strs, ...args) {
+	var result = strs[0];
+	for (var i = 0; i < args.length; ++i) {
+		var n = args[i];
+		if (Number(n) == n) {
+			result += Number(args[i]).toFixed(2);
+		} else {
+			result += args[i];
+		}
+		result += strs[i+1];
+	}
+	return result;
+};
 
+
+export const isMe = (user) => Number(user.id) === Number(BOT_ID);
 
 export const getName = user => {
 	return user.username || `${user.first_name || ''} ${user.last_name || ''}`;
@@ -88,6 +102,8 @@ export const replyOnly = (texts = []) => ({ message, replyWithHTML }, next) => {
 };
 
 export const extra = (ctx, next) => {
+	ctx.replyWithHTML = (text, ...opts) => ctx.replyWithHTML(formatFloats`${text}`, ...opts);
+
 	ctx.replyWithHTMLQuote = (text, opts = {}) =>
 		ctx.replyWithHTML(text, { reply_to_message_id: ctx.message.message_id, ...opts });
 
