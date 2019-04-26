@@ -102,7 +102,8 @@ export const replyOnly = (texts = []) => ({ message, replyWithHTML }, next) => {
 };
 
 export const extra = (ctx, next) => {
-	ctx.replyWithHTML = (text, ...opts) => ctx.replyWithHTML(formatFloats`${text}`, ...opts);
+	const { replyWithHTML } = ctx;
+	ctx.replyWithHTML = (text, ...opts) => replyWithHTML(formatFloats`${text}`, ...opts);
 
 	ctx.replyWithHTMLQuote = (text, opts = {}) =>
 		ctx.replyWithHTML(text, { reply_to_message_id: ctx.message.message_id, ...opts });
