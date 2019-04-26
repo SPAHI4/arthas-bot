@@ -2,6 +2,7 @@ import Telegraf from 'telegraf';
 import 'reflect-metadata';
 import env from 'env-var';
 import { sample } from 'lodash';
+import 'full-icu';
 
 import commandInline from './sounds/inline'
 import soundsList from './sounds/soundsList'
