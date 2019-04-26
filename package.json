@@ -11,7 +11,7 @@
   },
   "scripts": {
     "dev": "nodemon --exec babel-node src --harmony",
-    "start": "node build --harmony --icu-data-dir=node_modules/full-icu",
+    "start": "node --icu-data-dir=./node_modules/full-icu build",
     "build": "babel src --out-dir build --copy-files",
     "heroku-postbuild": "rm -rf build && yarn run build"
   },

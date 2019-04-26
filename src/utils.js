@@ -14,7 +14,7 @@ export const formatFloats = function d2(strs, ...args) {
 		if (Number(n) == n) {
 			result += new Intl.NumberFormat(['ru-RU'], {
 				minimumFractionDigits: 0,
-				maximumFractionDigits: 2,
+				maximumFractionDigits: 1,
 			}).format(args[i]);
 		} else {
 			result += args[i];
