@@ -8,9 +8,9 @@ const IS_PROD = process.env.NODE_ENV === 'production';
 const BOT_ID = BOT_TOKEN.split(':')[ 0 ];
 
 export const formatFloats = function d2(strs, ...args) {
-	var result = strs[0];
-	for (var i = 0; i < args.length; ++i) {
-		var n = args[i];
+	let result = strs[0];
+	for (let i = 0; i < args.length; ++i) {
+		const n = args[i];
 		if (Number(n) == n) {
 			result += Number(args[i]).toFixed(2);
 		} else {
@@ -102,9 +102,6 @@ export const replyOnly = (texts = []) => ({ message, replyWithHTML }, next) => {
 };
 
 export const extra = (ctx, next) => {
-	const { replyWithHTML } = ctx;
-	ctx.replyWithHTML = (text, ...opts) => replyWithHTML(formatFloats`${text}`, ...opts);
-
 	ctx.replyWithHTMLQuote = (text, opts = {}) =>
 		ctx.replyWithHTML(text, { reply_to_message_id: ctx.message.message_id, ...opts });
 

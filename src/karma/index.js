@@ -4,7 +4,7 @@ import { differenceInMinutes } from 'date-fns';
 import { PLUS_TRIGGERS, MINUS_TRIGGERS } from './triggers';
 import { pluralize } from 'numeralize-ru';
 
-import { limiter, replyOnly, withReplyUser, withUser } from '../utils';
+import { formatFloats, limiter, replyOnly, withReplyUser, withUser } from '../utils';
 
 const IS_PROD = process.env.NODE_ENV === 'production';
 
@@ -29,7 +29,7 @@ const karmaPlusImpl = async (ctx) => {
 	}
 
 	if (userFrom.karma < KARMA_POMOIKA) {
-		return replyWithHTMLQuote(`баланс рофлов меньше ${KARMA_POMOIKA}... земля тебе пухом, братишка`);
+		return replyWithHTMLQuote(formatFloats`баланс рофлов меньше ${KARMA_POMOIKA}... земля тебе пухом, братишка`);
 	}
 
 	const oldKarma = userTo.karma;
@@ -40,7 +40,7 @@ const karmaPlusImpl = async (ctx) => {
 	await userRepository.save([ userTo, userFrom ]);
 
 	replyWithHTML(sample([
-		`<i>${userFrom.getName()}</i> (${userFrom.karma}) дал 💲 <b>рофланкойн</b> <i>${userTo.getName()}</i> (${oldKarma} → <b>${userTo.karma}</b>)`,
+		formatFloats`<i>${userFrom.getName()}</i> (${userFrom.karma}) дал 💲 <b>рофланкойн</b> <i>${userTo.getName()}</i> (${oldKarma} → <b>${userTo.karma}</b>)`,
 	]));
 };
 
@@ -87,7 +87,7 @@ const karmaMinusImpl = async ctx => {
 
 		await userRepository.save([ userTo, userFrom ]);
 
-		return replyWithHTML(`гуччи линзы <i>${userTo.getName()}</i> (${oldUserToKarma} → <b>${userTo.karma}</b>) отразили хейт <i>${userFrom.getName()}</i> (${oldUserFromKarma} → <b>${userFrom.karma}</b>)`);
+		return replyWithHTML(formatFloats`гуччи линзы <i>${userTo.getName()}</i> (${oldUserToKarma} → <b>${userTo.karma}</b>) отразили хейт <i>${userFrom.getName()}</i> (${oldUserFromKarma} → <b>${userFrom.karma}</b>)`);
 	}
 
 	const oldKarma = userTo.karma;
@@ -99,7 +99,7 @@ const karmaMinusImpl = async ctx => {
 	await userRepository.save([ userTo, userFrom ]);
 
 	replyWithHTML(sample([
-		`<i>${userFrom.getName()}</i> (${userFrom.karma}) залил соляры <i>${userTo.getName()}</i> (${oldKarma} → <b>${userTo.karma}</b>)`,
+		formatFloats`<i>${userFrom.getName()}</i> (${userFrom.karma}) залил соляры <i>${userTo.getName()}</i> (${oldKarma} → <b>${userTo.karma}</b>)`,
 	]));
 };
 

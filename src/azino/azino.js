@@ -5,7 +5,7 @@ import { pluralize } from 'numeralize-ru';
 import commandParts from 'telegraf-command-parts';
 
 import { User } from '../db/entity/User';
-import { esc, limiter, replyOnly, withUser } from '../utils';
+import { esc, formatFloats, limiter, replyOnly, withUser } from '../utils';
 
 const IS_PROD = process.env.NODE_ENV === 'production';
 export const CASINO_COOLDOWN = 90;
@@ -166,12 +166,12 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 					const win = BET * random(2, 4);
 					user.karma += win;
 					replyWithHTML(sample([
-						`Ебааать, бонус от TTR! Легчайшие +${win} для ${user.getMention()}! Мое увожение PogChamp`,
-						`Вы получаете грант от США
+						formatFloats`Ебааать, бонус от TTR! Легчайшие +${win} для ${user.getMention()}! Мое увожение PogChamp`,
+						formatFloats`Вы получаете грант от США
 						 +${win} для ${user.getMention()}! roflanTsar`,
-						`Я СНОВА ЖИВУ! 
+						formatFloats`Я СНОВА ЖИВУ! 
 						 +${win} для ${user.getMention()}! roflanZdarova`,
-						`DING DING DING! Найс мультикаст
+						formatFloats`DING DING DING! Найс мультикаст
 						 +${win} для ${user.getMention()}! Good idea (cuz it was mine)`,
 					]));
 				} else {
@@ -185,13 +185,13 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 				if (!random(0, 9)) {
 					const lose = BET * random(2, 4);
 					user.karma -= lose;
-					replyWithHTML(sample([`Всем привет! Я - Алексей Вильнюсов, и сегодня я научу вас зарабатывать! 
+					replyWithHTML(sample([formatFloats`Всем привет! Я - Алексей Вильнюсов, и сегодня я научу вас зарабатывать! 
 					Для этого нужен вступительный взнос, и я забираю у вас <b>${lose}</b> ${pluralize(lose, 'сабж', 'сабжа', 'сабжей')}, ${user.getMention()} <b>(${user.karma})</b>`,
-						`Привет! Это Навальный! Ваш донат для ФБК успешно принят!
+						formatFloats`Привет! Это Навальный! Ваш донат для ФБК успешно принят!
 					Спасибо за <b>${lose}</b> ${pluralize(lose, 'сабж', 'сабжа', 'сабжей')}, ${user.getMention()} <b>(${user.karma})</b>`,
-						`Кхе-кхе, доброго времени суток! Хочешь как на Украине? Тогда плоти нолог!
+						formatFloats`Кхе-кхе, доброго времени суток! Хочешь как на Украине? Тогда плоти нолог!
 					Я забираю у тебя <b>${lose}</b> ${pluralize(lose, 'сабж', 'сабжа', 'сабжей')}, ${user.getMention()} <b>(${user.karma})</b>`,
-						`Это Варламов! А велодорожки где?
+						formatFloats`Это Варламов! А велодорожки где?
 					Налог на многоэташки <b>${lose}</b> ${pluralize(lose, 'сабж', 'сабжа', 'сабжей')}, ${user.getMention()} <b>(${user.karma})</b>`,
 					]));
 				} else {
