@@ -171,6 +171,8 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 						 +${win} для ${user.getMention()}! roflanTsar`,
 						`Я СНОВА ЖИВУ! 
 						 +${win} для ${user.getMention()}! roflanZdarova`,
+						`DING DING DING! Найс мультикаст
+						 +${win} для ${user.getMention()}! Good idea (cuz it was mine)`,
 					]));
 				} else {
 					let win = BET;
@@ -189,6 +191,8 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 					Спасибо за <b>${lose}</b> ${pluralize(lose, 'сабж', 'сабжа', 'сабжей')}, ${user.getMention()} <b>(${user.karma})</b>`,
 						`Кхе-кхе, доброго времени суток! Хочешь как на Украине? Тогда плоти нолог!
 					Я забираю у тебя <b>${lose}</b> ${pluralize(lose, 'сабж', 'сабжа', 'сабжей')}, ${user.getMention()} <b>(${user.karma})</b>`,
+						`Это Варламов! А велодорожки где?
+					Налог на многоэташки <b>${lose}</b> ${pluralize(lose, 'сабж', 'сабжа', 'сабжей')}, ${user.getMention()} <b>(${user.karma})</b>`,
 					]));
 				} else {
 					const lose = BET;
