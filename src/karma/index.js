@@ -77,7 +77,7 @@ const karmaMinusImpl = async ctx => {
 	}
 
 
-	if (!random(0, 5)) {
+	if (!random(0, 4)) {
 		const oldUserFromKarma = userFrom.karma;
 		const oldUserToKarma = userTo.karma;
 		
