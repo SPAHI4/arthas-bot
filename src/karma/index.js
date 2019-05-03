@@ -77,12 +77,12 @@ const karmaMinusImpl = async ctx => {
 	}
 
 
-	if (!random(0, 9)) {
+	if (!random(0, 5)) {
 		const oldUserFromKarma = userFrom.karma;
 		const oldUserToKarma = userTo.karma;
 		
 		userTo.karma += userFrom.getVotePoint();
-		userFrom.karma -= Math.max(Math.floor(userFrom.karma / 5), 5);
+		userFrom.karma -= Math.max(Math.floor(userFrom.karma / 4), 5);
 		userFrom.lastVote = new Date();
 
 		await userRepository.save([ userTo, userFrom ]);
@@ -123,7 +123,7 @@ const getIcon = i => {
 	if (i === 3) {
 		return '🥉';
 	} else {
-		return `${i}.`;
+		return `${i.toString()}.`;
 	}
 }
 
