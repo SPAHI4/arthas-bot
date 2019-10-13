@@ -150,7 +150,7 @@ export const topLaddera = async ctx => {
 	}
 
 	if (top.length) {
-		content.push('...\n Херальды 🤢');
+		content.push('...\n Уебаны 1000 ранга 🤢');
 		content.push(...top.slice(-3));
 	}
 
