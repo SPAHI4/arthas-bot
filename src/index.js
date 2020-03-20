@@ -49,9 +49,14 @@ if (!IS_EVIL) {
 if (IS_EVIL) {
 	app.hears(
 		message => message && MINUS_TRIGGERS.includes(message.toUpperCase()),
-		karmaMinus
+		karmaMinus,
 	);
 	app.hears('даун', otvetochka);
+} else {
+	app.hears('Антон', ctx => {
+		ctx.replyWithHTMLQuote('а?')
+		setTimeout(() => ctx.replyWithHTMLQuote('че звал сларк?'), 1000);
+	});
 }
 
 
