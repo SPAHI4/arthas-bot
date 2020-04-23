@@ -45,12 +45,6 @@ if (!IS_EVIL) {
 	app.command('soundslist', limiter, soundsList);
 	app.command('topladder', limiter, topLaddera);
 	AZINO_ENABLED && app.command('azino777', limiter, azino);
-	
-	// временно ))))))))
-	
-	setInverval(() => {
-		app.sendMessage('spahi4', 'test');
-	}, 100 * 60);
 }
 if (IS_EVIL) {
 	app.hears(
