@@ -52,7 +52,7 @@ if (IS_EVIL) {
 		karmaMinus,
 	);
 	app.hears('даун', otvetochka);
-	app.hears(message => message && (message.includes('Alex mode:') || message.includes('Daler mode:')) , ctx => ctx.replyWithHTMLQuote(`пашол нахуй`));
+	app.hears(message => message && ((message.includes('Alex mode:') || message.includes('Daler mode:'))) , ctx => ctx.replyWithHTMLQuote(`пашол нахуй`));
 } else {
 	app.hears('Антон', ctx => {
 		ctx.replyWithHTMLQuote('а?')

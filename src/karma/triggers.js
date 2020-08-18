@@ -3,6 +3,7 @@ export const PLUS_TRIGGERS = [
   'СПС',
   'ДЯКУЮ',
   'ОРУ',
+  '🗡ОРУ🗡',
   'LUL',
   'ПЛЮС',
   '👍',
