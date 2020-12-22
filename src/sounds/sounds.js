@@ -88,5 +88,6 @@ export default {
     "ХЫХЫХЫХЫ": "https://dl.dropbox.com/s/2t971k8y8aqh9vv/papich_hihihi.mp3",
     "САНЯЯЯ": "https://dl.dropbox.com/s/71psz4r6izd5mhe/sanya.mp3",
     "ВУД Ю ЛАЙК ТУ СТЕНД ОН ИТ": "https://dl.dropbox.com/s/d6irt13hitburqj/would_you_like_to_stand.aac",
-    "ВУД Ю ЛАЙК ТУ СТЕНД ОН ИТ?": "https://dl.dropbox.com/s/s4ln3xmu6zdi9k5/would_you_like_to_stand.wav"
+    "ВУД Ю ЛАЙК ТУ СТЕНД ОН ИТ?": "https://dl.dropbox.com/s/s4ln3xmu6zdi9k5/would_you_like_to_stand.wav",
+    "ЗЕ НЕКСТ ЛЕБЕЛ ПЛЕЙ": "https://dl.dropbox.com/s/9ct8m60l1l9sq26/the_next_level_play.mp3",
 };
