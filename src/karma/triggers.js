@@ -30,6 +30,7 @@ export const PLUS_TRIGGERS = [
   'TY',
   'THX',
   'ЯСНО ОЛД',
+  'ХЕХ'
 ];
 export const MINUS_TRIGGERS = [
   '-',
