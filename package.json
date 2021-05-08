@@ -32,7 +32,7 @@
     "date-fns": "^1.29.0",
     "env-var": "^3.3.0",
     "full-icu": "^1.2.1",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.21",
     "numeralize-ru": "^1.0.1",
     "pg": "^7.4.3",
     "reflect-metadata": "^0.1.12",
