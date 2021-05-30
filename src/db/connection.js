@@ -12,21 +12,29 @@ let connection;
 export const options = {
 	type: 'postgres',
 	url: DATABASE_URL,
+	ssl: true,
+	extra: {
+		ssl: {
+			rejectUnauthorized: false,
+		},
+	},
 	entities: [
 		User,
 	],
-	logging: {
-		logQueries: process.env.NODE_ENV !== 'production',
-		logFailedQueryError: true,
-	},
+	logger: "debug",
+	logging: "all",
 	synchronize: true,
+	logNotifications: true,
+	connectTimeoutMS: 10000,
 };
 
 export const getConnection = async () => {
 	if (connection && connection.isConnected) {
-		return Promise.resolve(connection);
+		return connection;
 	} else {
+		console.log('Preparing connection');
 		connection = await createConnection(options);
+		console.log('DB connected');
 		return connection;
 	}
 };
