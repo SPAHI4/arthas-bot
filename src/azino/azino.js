@@ -64,7 +64,7 @@ const texts = [
  Теперь у тебя ${all} ${pluralize(all, 'рофланкойн', 'рофланкойна', 'рофланкойнов')}`,
 			(lose, all) => formatFloats`(нет)
 
- минус <b>${lose}</b>, земля тебе пухом
+ ЭТО МНЕ? ЭТО МНЕ? ЭТО МНЕ? минус <b>${lose}</b>
  
  У тебя осталось <b>${all}</b> ${pluralize(all, 'рофланкойн', 'рофланкойна', 'рофланкойнов')}`,
 		],
@@ -83,7 +83,7 @@ const texts = [
 
 <b>-${lose}</b>
 
- Мистер плюсовый (минусовый), теперь у тебя ${all} ${pluralize(all, 'сабж', 'сабжа', 'сабжей')}`,
+ Здарова, шнырь-курьер! теперь у тебя ${all} ${pluralize(all, 'сабж', 'сабжа', 'сабжей')}`,
 		],
 	],
 ];
@@ -187,12 +187,14 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 					user.karma -= lose;
 					replyWithHTML(sample([formatFloats`Всем привет! Я - Алексей Вильнюсов, и сегодня я научу вас зарабатывать! 
 					Для этого нужен вступительный взнос, и я забираю у вас <b>${lose}</b> ${pluralize(lose, 'сабж', 'сабжа', 'сабжей')}, ${user.getMention()} <b>(${user.karma})</b>`,
-						formatFloats`Привет! Это Навальный! Ваш донат для ФБК успешно принят!
+						formatFloats`Привет! Это Навальный! Ваш донат для ФБК <i>(ПРИЗНАННАЯ НА ТЕРРИТОРИИ РФ ЭКСТРЕМИСТСКАЯ ОРГАНИЗАЦИЯ)</i> успешно принят!
 					Спасибо за <b>${lose}</b> ${pluralize(lose, 'сабж', 'сабжа', 'сабжей')}, ${user.getMention()} <b>(${user.karma})</b>`,
 						formatFloats`Кхе-кхе, доброго времени суток! Хочешь как на Украине? Тогда плоти нолог!
 					Я забираю у тебя <b>${lose}</b> ${pluralize(lose, 'сабж', 'сабжа', 'сабжей')}, ${user.getMention()} <b>(${user.karma})</b>`,
 						formatFloats`Это Варламов! А велодорожки где?
 					Налог на многоэташки <b>${lose}</b> ${pluralize(lose, 'сабж', 'сабжа', 'сабжей')}, ${user.getMention()} <b>(${user.karma})</b>`,
+						formatFloats`АХА ХАХАХА! Я ТУТ ПРИТАИЛСЯ! ПРИТАИЛСЯ НА КРЫСИЧАХ! АХАХАХХА!
+					ПЛАТИ ДАНЬ <b>${lose}</b> ${pluralize(lose, 'сабж', 'сабжа', 'сабжей')}, ${user.getMention()} <b>(${user.karma})</b>`,
 					]));
 				} else {
 					const lose = BET;
