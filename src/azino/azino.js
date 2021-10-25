@@ -96,7 +96,8 @@ const texts = [
 	],
 ];
 
-const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, userRepository, user, contextState }) => {
+const casinoImpl = async (ctx) => {
+	const { message, reply, replyWithHTML, replyWithHTMLQuote, userRepository, user, contextState } = ctx;
 
 	try {
 
