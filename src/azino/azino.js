@@ -9,8 +9,8 @@ import { esc, formatFloats, limiter, replyOnly, withUser } from '../utils';
 
 const IS_PROD = process.env.NODE_ENV === 'production';
 export const CASINO_COOLDOWN = 90;
-const REQUIRED_KARMA = 1;
-const DEFAULT_BET = 5;
+const REQUIRED_KARMA = 2;
+const DEFAULT_BET = 2;
 
 let isBusy = false;
 
