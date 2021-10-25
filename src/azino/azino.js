@@ -3,6 +3,7 @@ import { differenceInMinutes } from 'date-fns';
 import { compose } from 'telegraf';
 import { pluralize } from 'numeralize-ru';
 import commandParts from 'telegraf-command-parts';
+import env from 'env-var';
 
 import { User } from '../db/entity/User';
 import { esc, formatFloats, getName, limiter, replyOnly, withUser } from '../utils';
