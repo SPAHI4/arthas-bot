@@ -5,12 +5,20 @@ import { pluralize } from 'numeralize-ru';
 import commandParts from 'telegraf-command-parts';
 
 import { User } from '../db/entity/User';
-import { esc, formatFloats, limiter, replyOnly, withUser } from '../utils';
+import { esc, formatFloats, getName, limiter, replyOnly, withUser } from '../utils';
 
 const IS_PROD = process.env.NODE_ENV === 'production';
-export const CASINO_COOLDOWN = 90;
 const REQUIRED_KARMA = 2;
 const DEFAULT_BET = 2;
+
+const getCooldown = ctx => {
+	const PRIDE_ID = env.get('PRIDE_ID').required().asString();
+	if (ctx.message && String(ctx.message.chat.id) !== PRIDE_ID) {
+		return 30;
+	}
+
+	return 90;
+}
 
 let isBusy = false;
 
@@ -98,9 +106,9 @@ const casinoImpl = async ({ message, reply, replyWithHTML, replyWithHTMLQuote, u
 
 		isBusy = true; // на разные чаты пофиг
 
-		if (IS_PROD && user.lastCasino && differenceInMinutes(new Date(), user.lastCasino) < CASINO_COOLDOWN) {
+		if (IS_PROD && user.lastCasino && differenceInMinutes(new Date(), user.lastCasino) < getCooldown(ctx)) {
 			isBusy = false;
-			const timeDiff = CASINO_COOLDOWN - differenceInMinutes(new Date(), user.lastCasino);
+			const timeDiff = getCooldown(ctx) - differenceInMinutes(new Date(), user.lastCasino);
 			const waitingTime = `\n ⏳ жди ${timeDiff} ${pluralize(timeDiff, 'минуту', 'минуты', 'минут')}`;
 			return replyWithHTMLQuote(sample([
 				`АВТИКИ ПОКА ЗАКРЫТЫ ДЛЯ ТЕБЯ, ${waitingTime}`,
