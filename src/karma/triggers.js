@@ -29,8 +29,8 @@ export const PLUS_TRIGGERS = [
   'SPS',
   'TY',
   'THX',
-  'ЯСНО ОЛД',
-  'ХЕХ'
+  'ХЕХ',
+  'БАЗА',
 ];
 export const MINUS_TRIGGERS = [
   '-',
