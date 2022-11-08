@@ -179,9 +179,9 @@ const casinoImpl = async (ctx) => {
 						formatFloats`Ебааать, бонус от TTR! Легчайшие +${win} для ${user.getMention()}! Мое увожение PogChamp`,
 						formatFloats`Вы получаете грант от США
 						 +${win} для ${user.getMention()}! roflanTsar`,
-						formatFloats`Я СНОВА ЖИВУ! 
-						 +${win} для ${user.getMention()}! roflanZdarova`,
-						formatFloats`DING DING DING! Найс мультикаст
+						formatFloats`К вам пришла мобилизация! Первая зарплата
+						 +${win} для ${user.getMention()}!`,
+						formatFloats`DING DING DING Motherfucker!
 						 +${win} для ${user.getMention()}! Good idea (cuz it was mine)`,
 					]));
 				} else {
@@ -197,10 +197,12 @@ const casinoImpl = async (ctx) => {
 					user.karma -= lose;
 					replyWithHTML(sample([formatFloats`Всем привет! Я - Алексей Вильнюсов, и сегодня я научу вас зарабатывать! 
 					Для этого нужен вступительный взнос, и я забираю у вас <b>${lose}</b> ${pluralize(lose, 'сабж', 'сабжа', 'сабжей')}, ${user.getMention()} <b>(${user.karma})</b>`,
-						formatFloats`Привет! Это Навальный! Ваш донат для ФБК <i>(ПРИЗНАННАЯ НА ТЕРРИТОРИИ РФ ЭКСТРЕМИСТСКАЯ ОРГАНИЗАЦИЯ)</i> успешно принят!
+						formatFloats`Привет! Это Навальный! Спасибо за передачку!
 					Спасибо за <b>${lose}</b> ${pluralize(lose, 'сабж', 'сабжа', 'сабжей')}, ${user.getMention()} <b>(${user.karma})</b>`,
-						formatFloats`Кхе-кхе, доброго времени суток! Хочешь как на Украине? Тогда плоти нолог!
-					Я забираю у тебя <b>${lose}</b> ${pluralize(lose, 'сабж', 'сабжа', 'сабжей')}, ${user.getMention()} <b>(${user.karma})</b>`,
+						formatFloats`НОЛОГ НА СВО!
+					Я Zабираю у тебя <b>${lose}</b> ${pluralize(lose, 'сабж', 'сабжа', 'сабжей')}, ${user.getMention()} <b>(${user.karma})</b>`,
+						formatFloats`Податок на потреби тероборони!
+					Я забираю в тебе <b>${lose}</b> ${pluralize(lose, 'гривню', 'гривні', 'гривень')}, ${user.getMention()} <b>(${user.karma})</b>`,
 						formatFloats`Это Варламов! А велодорожки где?
 					Налог на многоэташки <b>${lose}</b> ${pluralize(lose, 'сабж', 'сабжа', 'сабжей')}, ${user.getMention()} <b>(${user.karma})</b>`,
 						formatFloats`АХА ХАХАХА! Я ТУТ ПРИТАИЛСЯ! ПРИТАИЛСЯ НА КРЫСИЧАХ! АХАХАХХА!
